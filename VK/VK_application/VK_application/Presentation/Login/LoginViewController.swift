@@ -28,7 +28,6 @@ final class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
         // Второе — когда она пропадает
@@ -36,34 +35,20 @@ final class LoginViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         // Отписываемся от уведомлений клавиатуры
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     
-    //    @IBAction func passwordTextButtonPresed(_ sender: UIButton) {             // где-то ошибка
-    //        passwordTextField.isSecureTextEntry = false
-    //    }
     
-    @IBAction private func loginButtonPressed(_ sender: UIButton) {
-        guard
-            let login = loginTextField.text,
-            let password = passwordTextField.text
-        else {
-            print("Login or password is empty")
-            return
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "loginToMainTabBar"{
+            return checkInputData()
         }
-        
-        if login == "1" && password == "1" {
-            sucsessLogin()
-        } else {
-            unsucsessLogin()
-        }
-        
+        return false
     }
     
     
@@ -102,7 +87,7 @@ final class LoginViewController: UIViewController {
     }
     
     
-    private func sucsessLogin(){
+    private func sucsessLogin() {
         titleLabelView.text = "Подключаемся"
         loadingIndicator.isHidden = false
         loginTextField.isEnabled = false
@@ -113,8 +98,37 @@ final class LoginViewController: UIViewController {
     
     
     private func unsucsessLogin() {
-        titleLabelView.text = "Ошибка"
         loadingIndicator.isHidden = true
         print("Unsucsessful login!")
+        showErrorAlert(message: "Неверный логин или пароль")
+    }
+    
+    private func showErrorAlert(message: String){
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .cancel) {_ in
+            self.loginTextField.text = ""
+            self.passwordTextField.text = ""
+        }
+        
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    private func checkInputData() -> Bool {
+        guard
+            let login = loginTextField.text,
+            let password = passwordTextField.text
+        else {
+            print("Login or password is nil")
+            return false
+        }
+        if login == "1" && password == "1" {
+            sucsessLogin()
+            return true
+        } else {
+            unsucsessLogin()
+            return false
+        }
     }
 }
