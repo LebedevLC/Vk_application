@@ -19,21 +19,22 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var unhidePasswordButton: UIButton!
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var imitationConnectionSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setView()
     }
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Подписываемся на два уведомления: одно приходит при появлении клавиатуры
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWasShown),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
         // Второе — когда она пропадает
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -43,77 +44,12 @@ final class LoginViewController: UIViewController {
         
     }
     
-    
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        if identifier == "loginToMainTabBar"{
+        if identifier == "loginToMainTabBar" {
             return checkInputData()
         }
         return false
     }
-    
-    
-    @objc private func keyboardWasShown(notification: Notification) {           // Когда клавиатура появляется
-        
-        // Получаем размер клавиатуры
-        let info = notification.userInfo! as NSDictionary
-        let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
-        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
-        
-        // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
-        self.scrollView?.contentInset = contentInsets
-        scrollView?.scrollIndicatorInsets = contentInsets
-    }
-    
-    
-    @objc private func keyboardWillBeHidden(notification: Notification) {        //Когда клавиатура исчезает
-        
-        // Устанавливаем отступ внизу UIScrollView, равный 0
-        let contentInsets = UIEdgeInsets.zero
-        scrollView?.contentInset = contentInsets
-        scrollView?.scrollIndicatorInsets = contentInsets
-    }
-    
-    
-    @objc private func hideKeyboard() {
-        self.scrollView?.endEditing(true)
-    }
-    
-    
-    private func setView() {
-        loginButton.layer.cornerRadius = 8
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        scrollView.addGestureRecognizer(tapGesture)
-    }
-    
-    
-    private func sucsessLogin() {
-        titleLabelView.text = "Подключаемся"
-        loadingIndicator.isHidden = false
-        loginTextField.isEnabled = false
-        passwordTextField.isEnabled = false
-        loginButton.isEnabled = false
-        print("Sucsessful login!")
-    }
-    
-    
-    private func unsucsessLogin() {
-        loadingIndicator.isHidden = true
-        print("Unsucsessful login!")
-        showErrorAlert(message: "Неверный логин или пароль")
-    }
-    
-    private func showErrorAlert(message: String){
-        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: "ОК", style: .cancel) {_ in
-            self.loginTextField.text = ""
-            self.passwordTextField.text = ""
-        }
-        
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
-    }
-    
     
     private func checkInputData() -> Bool {
         guard
@@ -123,12 +59,66 @@ final class LoginViewController: UIViewController {
             print("Login or password is nil")
             return false
         }
-        if login == "1" && password == "1" {
+        if login == "" && password == "" {
             sucsessLogin()
             return true
         } else {
             unsucsessLogin()
             return false
         }
+    }
+    
+    @objc private func keyboardWasShown(notification: Notification) {           // Когда клавиатура появляется
+        // Получаем размер клавиатуры
+        let info = notification.userInfo! as NSDictionary
+        let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
+        // Добавляем отступ внизу UIScrollView, равный размеру клавиатуры
+        self.scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func keyboardWillBeHidden(notification: Notification) {        //Когда клавиатура исчезает
+        // Устанавливаем отступ внизу UIScrollView, равный 0
+        let contentInsets = UIEdgeInsets.zero
+        scrollView?.contentInset = contentInsets
+        scrollView?.scrollIndicatorInsets = contentInsets
+    }
+    
+    @objc private func hideKeyboard() {
+        self.scrollView?.endEditing(true)
+    }
+    
+    private func setView() {
+        loginButton.layer.cornerRadius = 8
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        scrollView.addGestureRecognizer(tapGesture)
+    }
+    
+    private func sucsessLogin() {
+//      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2){}
+        titleLabelView.text = "Подключаемся"
+        loadingIndicator.isHidden = false
+        loginTextField.isEnabled = false
+        passwordTextField.isEnabled = false
+        loginButton.isEnabled = false
+        print("Sucsessful login!")
+    }
+    
+    private func unsucsessLogin() {
+        loadingIndicator.isHidden = true
+        print("Unsucsessful login!")
+        showErrorAlert(message: "Неверный логин или пароль")
+    }
+    
+    private func showErrorAlert(message: String) {
+        let alert = UIAlertController(title: "Ошибка", message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "ОК", style: .cancel) {_ in
+            self.loginTextField.text = ""
+            self.passwordTextField.text = ""
+        }
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
 }
