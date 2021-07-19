@@ -11,12 +11,26 @@ final class FriendsTableViewCell: UITableViewCell {
     
     @IBOutlet private var avatarImageView: UIImageView!
     @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var viewImageView: UIView!
     
     static let reusedIdentifire = "FriendsTableViewCell"
     
     func configure(friend: FriendModel) {
+        avatarImageView.layer.borderColor = UIColor.random().cgColor  // просто для красоты
         avatarImageView.image = UIImage(named: friend.avatarName)
-        avatarImageView.layer.cornerRadius = 50
         nameLabel.text = friend.name
     }
+    
+    func configureStatic() {
+        avatarImageView.layer.borderWidth = 2
+        avatarImageView.layer.cornerRadius = 50
+        avatarImageView.layer.borderWidth = 2
+        viewImageView.layer.cornerRadius = 50
+        viewImageView.layer.backgroundColor = UIColor.clear.cgColor
+    }
 }
+
+
+
+
+

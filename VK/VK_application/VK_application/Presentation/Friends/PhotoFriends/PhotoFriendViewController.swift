@@ -18,6 +18,7 @@ final class PhotoFriendViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    
 }
 
 
@@ -32,8 +33,9 @@ extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionVie
                                                       for: indexPath) as! PhotoCollectionViewCell
         let photo = photoes[indexPath.item]
         cell.configure(photo: photo)
+        cell.configureLikeControl(photo: photo)
+        cell.configureStatic()
         return cell
     }
-    
     
 }

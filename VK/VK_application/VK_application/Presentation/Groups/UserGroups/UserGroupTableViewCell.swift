@@ -16,7 +16,13 @@ final class UserGroupTableViewCell: UITableViewCell {
     
     func configure(group: GroupModel) {
         groupImageView.image = UIImage(named: group.avatarGroup)
-        groupImageView.layer.cornerRadius = 50
         groupNameLabel.text = group.nameGroup
     }
+    
+    func configureStatic() {
+        groupImageView.layer.borderWidth = 2
+        groupImageView.layer.borderColor = UIColor.white.cgColor
+        groupImageView.layer.cornerRadius = 50
+    }
+    
 }

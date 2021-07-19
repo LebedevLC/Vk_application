@@ -22,6 +22,11 @@
 		460E7173269DFD2100261821 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E7172269DFD2100261821 /* AddGroupViewController.swift */; };
 		460E7175269DFDCC00261821 /* AddGroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E7174269DFDCC00261821 /* AddGroupViewCell.swift */; };
 		460E7177269E01C100261821 /* UserGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460E7176269E01C100261821 /* UserGroupTableViewCell.swift */; };
+		4638E5C326A04B0F004E26A2 /* AvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4638E5C226A04B0F004E26A2 /* AvatarView.swift */; };
+		4638E5C926A1A248004E26A2 /* ColorRandomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4638E5C826A1A248004E26A2 /* ColorRandomExtension.swift */; };
+		4638E5CD26A1E0FA004E26A2 /* LikeControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4638E5CC26A1E0FA004E26A2 /* LikeControl.swift */; };
+		4638E5CF26A43994004E26A2 /* LikeControl2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4638E5CE26A43992004E26A2 /* LikeControl2.swift */; };
+		4638E5D226A5D310004E26A2 /* LettersControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4638E5D126A5D310004E26A2 /* LettersControl.swift */; };
 		46928FC42690A5010031E16F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46928FC32690A5010031E16F /* LoginViewController.swift */; };
 		469F57A9269089F200F3A697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F57A8269089F200F3A697 /* AppDelegate.swift */; };
 		469F57AB269089F200F3A697 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F57AA269089F200F3A697 /* SceneDelegate.swift */; };
@@ -46,6 +51,11 @@
 		460E7172269DFD2100261821 /* AddGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		460E7174269DFDCC00261821 /* AddGroupViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewCell.swift; sourceTree = "<group>"; };
 		460E7176269E01C100261821 /* UserGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGroupTableViewCell.swift; sourceTree = "<group>"; };
+		4638E5C226A04B0F004E26A2 /* AvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarView.swift; sourceTree = "<group>"; };
+		4638E5C826A1A248004E26A2 /* ColorRandomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorRandomExtension.swift; sourceTree = "<group>"; };
+		4638E5CC26A1E0FA004E26A2 /* LikeControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl.swift; sourceTree = "<group>"; };
+		4638E5CE26A43992004E26A2 /* LikeControl2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeControl2.swift; sourceTree = "<group>"; };
+		4638E5D126A5D310004E26A2 /* LettersControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LettersControl.swift; sourceTree = "<group>"; };
 		46928FC32690A5010031E16F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		469F57A5269089F200F3A697 /* VK_application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_application.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		469F57A8269089F200F3A697 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +160,57 @@
 			path = AddFriends;
 			sourceTree = "<group>";
 		};
+		4638E5C426A07BEE004E26A2 /* Castom */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5CB26A1E0DC004E26A2 /* View */,
+				4638E5CA26A1E0D1004E26A2 /* Control */,
+			);
+			path = Castom;
+			sourceTree = "<group>";
+		};
+		4638E5C626A1A1E5004E26A2 /* Librarys */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5C726A1A223004E26A2 /* Extension */,
+			);
+			path = Librarys;
+			sourceTree = "<group>";
+		};
+		4638E5C726A1A223004E26A2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5C826A1A248004E26A2 /* ColorRandomExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		4638E5CA26A1E0D1004E26A2 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5D026A5710F004E26A2 /* NotUse */,
+				4638E5CE26A43992004E26A2 /* LikeControl2.swift */,
+				4638E5D126A5D310004E26A2 /* LettersControl.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		4638E5CB26A1E0DC004E26A2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5C226A04B0F004E26A2 /* AvatarView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4638E5D026A5710F004E26A2 /* NotUse */ = {
+			isa = PBXGroup;
+			children = (
+				4638E5CC26A1E0FA004E26A2 /* LikeControl.swift */,
+			);
+			path = NotUse;
+			sourceTree = "<group>";
+		};
 		46928FBD2690A4180031E16F /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +274,8 @@
 		469F57A7269089F200F3A697 /* VK_application */ = {
 			isa = PBXGroup;
 			children = (
+				4638E5C626A1A1E5004E26A2 /* Librarys */,
+				4638E5C426A07BEE004E26A2 /* Castom */,
 				460E71582699B50100261821 /* Repository */,
 				460E71532699B25400261821 /* Models */,
 				46928FC12690A4AA0031E16F /* Presentation */,
@@ -304,14 +367,19 @@
 				460E716F269DF8F800261821 /* AddFriendsViewCell.swift in Sources */,
 				469F57A9269089F200F3A697 /* AppDelegate.swift in Sources */,
 				469F57AB269089F200F3A697 /* SceneDelegate.swift in Sources */,
+				4638E5C926A1A248004E26A2 /* ColorRandomExtension.swift in Sources */,
 				460E71642699E8BE00261821 /* AddFriendsViewController.swift in Sources */,
 				460E715E2699E23500261821 /* GroupStorage.swift in Sources */,
+				4638E5C326A04B0F004E26A2 /* AvatarView.swift in Sources */,
+				4638E5D226A5D310004E26A2 /* LettersControl.swift in Sources */,
 				460E7177269E01C100261821 /* UserGroupTableViewCell.swift in Sources */,
 				460E7171269DFAF800261821 /* UserGroups.swift in Sources */,
+				4638E5CD26A1E0FA004E26A2 /* LikeControl.swift in Sources */,
 				460E7173269DFD2100261821 /* AddGroupViewController.swift in Sources */,
 				460E71552699B28600261821 /* FriendModel.swift in Sources */,
 				460E716A269B185500261821 /* PhotoModel.swift in Sources */,
 				460E71572699B41500261821 /* GroupModel.swift in Sources */,
+				4638E5CF26A43994004E26A2 /* LikeControl2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

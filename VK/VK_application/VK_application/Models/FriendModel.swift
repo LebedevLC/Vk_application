@@ -12,4 +12,5 @@ struct FriendModel {
     var avatarName: String
     var groupsUser: [GroupModel]
     var photo: [PhotoModel]
+    
 }

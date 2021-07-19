@@ -11,6 +11,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var photoNameLabel: UILabel!
+    @IBOutlet var likeControl2: LikeControl2!
     
     static let identifier = "PhotoCollectionViewCell"
     
@@ -18,4 +19,16 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         photoNameLabel.text = photo.name
         photoImageView.image = UIImage(named: photo.fileName)
     }
+    
+    func configureStatic() {
+        photoImageView.layer.borderWidth = 3
+        photoImageView.layer.borderColor = UIColor.white.cgColor
+    }
+    
+    func configureLikeControl(photo: PhotoModel) {
+        likeControl2.isLike = photo.isLike
+        likeControl2.likeCounter = photo.likeCount
+//        photo.isLike.toggle()
+    }
+    
 }

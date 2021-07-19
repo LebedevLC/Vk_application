@@ -56,8 +56,10 @@ extension UserGroups: UITabBarDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         
+        groups = groups.sorted(by: { $0.nameGroup < $1.nameGroup})
         let group = groups[indexPath.row]
         cell.configure(group: group)
+        cell.configureStatic()
         return cell
     }
     

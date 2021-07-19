@@ -10,5 +10,7 @@ import Foundation
 struct PhotoModel {
     let name: String
     let fileName: String
+    var likeCount: Int
+    var isLike: Bool
 }
   

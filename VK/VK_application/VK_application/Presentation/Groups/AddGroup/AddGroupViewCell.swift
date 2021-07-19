@@ -16,7 +16,12 @@ final class AddGroupViewCell: UITableViewCell {
     
     func configure(group: GroupModel) {
         groupAvatarImageView.image = UIImage(named: group.avatarGroup)
-        groupAvatarImageView.layer.cornerRadius = 35
         nameGroupLabel.text = group.nameGroup
+    }
+    
+    func configureStatic() {
+        groupAvatarImageView.layer.borderWidth = 2
+        groupAvatarImageView.layer.borderColor = UIColor.white.cgColor
+        groupAvatarImageView.layer.cornerRadius = 35
     }
 }

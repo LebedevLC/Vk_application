@@ -17,9 +17,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var loginButton: UIButton!
-    @IBOutlet private weak var unhidePasswordButton: UIButton!
     @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet private weak var imitationConnectionSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()

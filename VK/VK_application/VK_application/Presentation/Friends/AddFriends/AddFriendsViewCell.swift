@@ -16,7 +16,12 @@ final class AddFriendsViewCell: UITableViewCell {
     
     func configure(friend: FriendModel) {
         avatarImageView.image = UIImage(named: friend.avatarName)
-        avatarImageView.layer.cornerRadius = 35
         nameLabel.text = friend.name
+    }
+    
+    func configureStatic() {
+        avatarImageView.layer.borderWidth = 2
+        avatarImageView.layer.cornerRadius = 35
+        avatarImageView.layer.borderColor = UIColor.white.cgColor
     }
 }

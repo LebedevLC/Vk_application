@@ -16,8 +16,7 @@ class MyFriends: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let storage = FriendStorage()
-        friends = storage.friend
+        friends = FriendStorage().friend
         
     }
     
@@ -35,6 +34,9 @@ class MyFriends: UIViewController {
         
     }
     
+    @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
+        tableView.reloadData()
+    }
     
     @IBAction func addFriend(_ segue: UIStoryboardSegue) {
         guard
@@ -51,9 +53,10 @@ class MyFriends: UIViewController {
             tableView.reloadData()
         }
     }
+    
 }
 
-
+// MARK: - Extension MyFriends
 extension MyFriends: UITabBarDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -70,8 +73,10 @@ extension MyFriends: UITabBarDelegate, UITableViewDataSource{
         else {
             return UITableViewCell()
         }
+        friends = friends.sorted(by: { $0.name < $1.name})
         let friend = friends[indexPath.row]
         cell.configure(friend: friend)
+        cell.configureStatic()
         return cell
     }
     
