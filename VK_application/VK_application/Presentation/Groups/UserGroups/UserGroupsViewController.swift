@@ -1,5 +1,5 @@
 //
-//  UserGroups.swift
+//  UserGroupsViewController.swift
 //  VK_application
 //
 //  Created by Сергей Чумовских  on 13.07.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserGroups: UIViewController {
+class UserGroupsViewController: UIViewController {
     
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var groupTableView: UITableView!
@@ -52,7 +52,7 @@ class UserGroups: UIViewController {
 
 //MARK: - Extension UserGroups: UISearchBarDelegate
 
-extension UserGroups: UISearchBarDelegate {
+extension UserGroupsViewController: UISearchBarDelegate {
     
     // функция активируется при изменении текста в searchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -78,7 +78,7 @@ extension UserGroups: UISearchBarDelegate {
 
 //MARK: - Extension UserGroups: UITabBarDelegate, UITableViewDataSource
 
-extension UserGroups: UITableViewDelegate, UITableViewDataSource{
+extension UserGroupsViewController: UITableViewDelegate, UITableViewDataSource{
     
     // Колличество строк в ячейке
     func numberOfSections(in tableView: UITableView) -> Int {

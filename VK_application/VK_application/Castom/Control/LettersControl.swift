@@ -40,7 +40,7 @@ final class LettersControl: UIControl {
             let button = UIButton(type: .system)
             button.backgroundColor = .clear
             button.setTitle(letter, for: .normal)
-            button.setTitleColor(.blue, for: .normal)
+            button.setTitleColor(.black, for: .normal)
             button.addTarget(self, action: #selector(selectedLetter(_:)), for: .touchUpInside)
             self.buttons.append(button)
         }

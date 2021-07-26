@@ -27,7 +27,7 @@ class AvatarView: UIView {
         }
     }
     
-    @IBInspectable var shadowOpacity: Float = 1 {
+    @IBInspectable var shadowOpacity: Float = 1.0 {
         didSet {
             self.layer.shadowOpacity = shadowOpacity
         }

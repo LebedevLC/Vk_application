@@ -14,15 +14,17 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var likeControl2: LikeControl2!
     
     static let identifier = "PhotoCollectionViewCell"
+    var likeTapped: (() -> Void)?
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureStatic()
     }
     
-    func configure(photo: PhotoModel) {
-        photoNameLabel.text = photo.name
-        photoImageView.image = UIImage(named: photo.fileName)
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.photoImageView.image = nil
+        self.photoNameLabel.text = nil
     }
     
     func configureStatic() {
@@ -30,9 +32,15 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         photoImageView.layer.borderColor = UIColor.white.cgColor
     }
     
-    func configureLikeControl(photo: PhotoModel) {
-        likeControl2.isLike = photo.isLike
-        likeControl2.likeCounter = photo.likeCount
+    func configure(photoModel: PhotoModel) {
+        photoNameLabel.text = photoModel.name
+        photoImageView.image = UIImage(named: photoModel.fileName)
+        likeControl2.configure(isLike: photoModel.isLike,
+                               likeCount: photoModel.likeCount
+        )
+        likeControl2.controlTapped = {[weak self] in
+            self?.likeTapped?()
+        }
     }
     
 }

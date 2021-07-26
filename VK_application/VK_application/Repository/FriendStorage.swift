@@ -16,15 +16,13 @@ class FriendStorage {
 
     init() {
         friend = [
-            FriendModel(name: "Haruno Sakura", avatarName: "Sakura1",
+            FriendModel(name: "Uchiha Sasuke", avatarName: "sasuke",
                         groupsUser: [
                             GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
                             GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
                         ],
                         photo: [
-                            PhotoModel(name: "Beauty", fileName: "Sakura2", likeCount: 10, isLike: false),
-                            PhotoModel(name: "Neko", fileName: "Sakura3", likeCount: 3, isLike: false),
-                            PhotoModel(name: "Art", fileName: "Sakura4", likeCount: 6, isLike: false)
+                            PhotoModel(name: "I am", fileName: "Sasuke1", likeCount: 1, isLike: false)
                         ]
             ),
             
@@ -48,14 +46,14 @@ class FriendStorage {
                         ]
             ),
             
-            FriendModel(name: "RosKomNadzor", avatarName: "r_tyan",
+            FriendModel(name: "Okabe Rintaro",
+                        avatarName: "Okabe1",
                         groupsUser: [
                             GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "RKN", avatarGroup: "group_RKN")
+                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
                         ],
                         photo: [
-                            PhotoModel(name: "I am", fileName: "r_tyan", likeCount: 4, isLike: false),
-                            PhotoModel(name: "Anime hater", fileName: "group_RKN", likeCount: 4, isLike: false)
+                            PhotoModel(name: "Мы забираем машину времени", fileName: "Okabe3", likeCount: 14, isLike: false)
                         ]
             )
             
@@ -144,6 +142,17 @@ class FriendStorage {
                         ],
                         photo: [
                             PhotoModel(name: "Who I am", fileName: "Kira", likeCount: 8, isLike: false)
+                        ]
+            ),
+            
+            FriendModel(name: "Okabe Rintaro", //(aka Hououin Kyouma, aka Mad Scientist)
+                        avatarName: "Okabe1",
+                        groupsUser: [
+                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
+                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
+                        ],
+                        photo: [
+                            PhotoModel(name: "Мы забираем машину времени", fileName: "Okabe3", likeCount: 14, isLike: false)
                         ]
             ),
             

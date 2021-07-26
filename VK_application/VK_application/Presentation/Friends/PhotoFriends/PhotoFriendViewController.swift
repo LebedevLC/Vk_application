@@ -21,7 +21,6 @@ final class PhotoFriendViewController: UIViewController {
     
 }
 
-
 extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -32,8 +31,11 @@ extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier,
                                                       for: indexPath) as! PhotoCollectionViewCell
         let photo = photoes[indexPath.item]
-        cell.configure(photo: photo)
-        cell.configureLikeControl(photo: photo)
+        cell.configure(photoModel: photo)
+        cell.likeTapped = { [weak self] in
+            self?.photoes[indexPath.item].isLike.toggle()
+            collectionView.reloadData()
+        }
         return cell
     }
     

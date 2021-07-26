@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UserGroups {
+extension UserGroupsViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -27,7 +27,7 @@ extension UserGroups {
         
     }
     
-    @objc private func keyboardWasShown(notification: Notification) {           // Когда клавиатура появляется
+    @objc private func keyboardWasShown(notification: Notification) {         // Когда клавиатура появляется
         // Получаем размер клавиатуры
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
@@ -37,7 +37,7 @@ extension UserGroups {
         groupTableView?.scrollIndicatorInsets = contentInsets
     }
     
-    @objc private func keyboardWillBeHidden(notification: Notification) {        //Когда клавиатура исчезает
+    @objc private func keyboardWillBeHidden(notification: Notification) {      //Когда клавиатура исчезает
         // Устанавливаем отступ внизу UIScrollView, равный 0
         let contentInsets = UIEdgeInsets.zero
         groupTableView?.contentInset = contentInsets

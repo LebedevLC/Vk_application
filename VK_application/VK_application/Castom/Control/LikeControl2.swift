@@ -9,11 +9,9 @@ import UIKit
 
 final class LikeControl2: UIControl {
     
-    var imageView = UIImageView()
-    var likeCountLabel = UILabel()
-    
-    var likeCounter: Int = 0
-    var isLike: Bool = false
+    var controlTapped: (() -> Void)?
+    private var likeButton = UIButton()
+    private var likeCountLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,49 +25,40 @@ final class LikeControl2: UIControl {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        likeCountLabel.text = String(likeCounter)
-        imageView.frame = bounds
-    }
-    
-    private func setLike(count: Int) {
-        setLikeCounterLabel()
+        likeButton.frame = bounds
     }
     
     private func setView() {
-        self.addSubview(imageView)
-        self.addTarget(self, action: #selector(tapControl), for: .touchUpInside)
-        
-        imageView.tintColor = UIColor.red
-        imageView.image = UIImage(systemName: "heart")
-        
-        setLikeCounterLabel()
-    }
-    
-    private func setLikeCounterLabel() {
-        addSubview(likeCountLabel)
-        UIView.transition(with: likeCountLabel,
-                          duration: 0.2,
-                          options: .transitionFlipFromLeft,
-                          animations: {[unowned self] in self.likeCountLabel.text = String(likeCounter)}
-        )
+        self.addSubview(likeButton)
+        self.addSubview(likeCountLabel)
+        self.likeButton.addTarget(self, action: #selector(tapControl(_:)), for: .touchUpInside)
+        likeButton.tintColor = UIColor.red
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         likeCountLabel.textColor = UIColor.red
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        likeCountLabel.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -2).isActive = true
-        likeCountLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor).isActive = true
-        
+        likeCountLabel.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -2).isActive = true
+        likeCountLabel.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor).isActive = true
+//        animatedLabel()
     }
     
-    @objc func tapControl() {
-        isLike.toggle()
-        if isLike {
-            imageView.image = UIImage(systemName: "heart.fill")
-            likeCounter += 1                                      // здесь хорошо бы сделать изменения в хранилище
-            setLikeCounterLabel()
-        } else {
-            imageView.image = UIImage(systemName: "heart")
-            likeCounter -= 1                                      // и здесь
-            setLikeCounterLabel()
-        }
+    func configure(isLike: Bool, likeCount: Int) {
+        likeCountLabel.text = String(likeCount)
+        likeButton.isSelected = isLike
+    }
+    
+    @objc func tapControl(_ sender: UIButton) {
+        controlTapped?()
+    }
+    
+    private func animatedLabel() {
+//        UIView.transition(with: likeCountLabel,
+//                          duration: 0.2,
+//                          options: .transitionFlipFromLeft,
+//                          animations: { [unowned self] in
+//                            self.likeCountLabel.text = String(likeCounter)}
+//        )
+//
     }
     
 }
