@@ -12,6 +12,7 @@ final class RepostControl2: UIControl {
     var controlTapped: (() -> Void)?
     private var repostButton = UIButton()
     private var repostCountLabel = UILabel()
+    private var repostCounter: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,12 +43,23 @@ final class RepostControl2: UIControl {
     }
     
     func configure(isRepost: Bool, repostCount: Int) {
+        repostCounter = repostCount
         repostCountLabel.text = String(repostCount)
         repostButton.isSelected = isRepost
     }
     
     @objc func tapControl(_ sender: UIButton) {
         controlTapped?()
+        animatedLabel(repostCount: repostCounter)
+    }
+    
+    private func animatedLabel(repostCount: Int) {
+        UIView.transition(with: repostCountLabel,
+                          duration: 0.2,
+                          options: .transitionFlipFromLeft,
+                          animations: { [unowned self] in
+                            self.repostCountLabel.text = String(repostCount)}
+        )
     }
     
 }

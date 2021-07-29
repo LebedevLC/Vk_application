@@ -2,17 +2,16 @@
 //  NewsViewController.swift
 //  VK_application
 //
-//  Created by Сергей Чумовских  on 23.07.2021.
+//  Шикарно с третьего раза Created by Сергей Чумовских  on 23.07.2021.
 //
 
 import UIKit
 
 final class NewsViewController: UIViewController {
-   
+    
     @IBOutlet var newsTableView: UITableView!
     
     private var news: [NewsModel] = []
-    private var newsText: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,17 +19,21 @@ final class NewsViewController: UIViewController {
         newsTableView.delegate = self
         newsTableView.dataSource = self
         
-        newsTableView.register(UINib(nibName: NewsCell.reusedIdentifier, bundle: nil),
-                           forCellReuseIdentifier: NewsCell.reusedIdentifier)
-        newsTableView.register(NewsHeader.self,
-                           forHeaderFooterViewReuseIdentifier: NewsHeader.reusedIdentifier)
+        newsTableView.register(UINib(nibName: NewsCellHeader2.reusedIdentifier, bundle: nil),
+                               forCellReuseIdentifier: NewsCellHeader2.reusedIdentifier)
+        
+        newsTableView.register(UINib(nibName: NewsCellText.reusedIdentifier, bundle: nil),
+                               forCellReuseIdentifier: NewsCellText.reusedIdentifier)
+        
+        newsTableView.register(UINib(nibName: NewsCellPhoto.reusedIdentifier, bundle: nil),
+                               forCellReuseIdentifier: NewsCellPhoto.reusedIdentifier)
+        
         newsTableView.register(NewsFooter.self,
                                forHeaderFooterViewReuseIdentifier: NewsFooter.reusedIdentifier)
         newsTableView.sectionFooterHeight = 60
         
         let storage = NewsStorage()
         news = storage.news
-        newsText = news.map { $0.text }
     }
     
 }
@@ -44,45 +47,49 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: NewsCell.reusedIdentifier, for: indexPath) as? NewsCell
-        else {
-            return UITableViewCell()
+        switch indexPath.row {
+        case 0:
+// первая ячейка
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellHeader2.reusedIdentifier,
+                                                         for: indexPath) as? NewsCellHeader2
+            else {
+                return UITableViewCell()
+            }
+            let newsData = news[indexPath.section]
+            let friend = newsData.user[0]
+            cell.configure(friend: friend, newsData: newsData)
+            return cell
+        case 1:
+// вторая ячейка
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellText.reusedIdentifier,
+                                                         for: indexPath) as? NewsCellText
+            else {
+                return UITableViewCell()
+            }
+            let news = news[indexPath.section]
+            cell.configure(news: news)
+            return cell
+        default:
+// третья ячейка
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellPhoto.reusedIdentifier,
+                                                         for: indexPath) as? NewsCellPhoto
+            else {
+                return UITableViewCell()
+            }
+            let news = news[indexPath.section]
+            cell.configure(news: news)
+            return cell
         }
-        let news = news[indexPath.section]
-        cell.configure(news: news)
-//        cell.imageView?.image = UIImage(named: news.newsImageName)
-        return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let verticalPadding: CGFloat = 20
-        let maskLayer = CALayer()
-        maskLayer.backgroundColor = UIColor.black.cgColor
-        maskLayer.frame = CGRect(x: cell.bounds.origin.x,
-                                 y: cell.bounds.origin.y,
-                                 width: cell.bounds.width,
-                                 height: cell.bounds.height).insetBy(dx: 0, dy: verticalPadding/2)
-        cell.layer.mask = maskLayer
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsHeader.reusedIdentifier) as? NewsHeader
-        else {
-            return nil
-        }
-        header.configure(newsText: newsText[section])
-        header.layer.borderWidth = 1
-        header.layer.borderColor = UIColor.white.cgColor
-        header.layer.backgroundColor = UIColor.white.cgColor
-        return header
-    }
-        
+    // добвляем футер с контролами
     func  tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard
             let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsFooter.reusedIdentifier) as? NewsFooter
@@ -92,16 +99,18 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         footer.configure(newsData: news[section].newsDataModel[0])
         footer.likeTapped = { [weak self] in
             self?.news[section].newsDataModel[0].newsIsLike.toggle()
-            self?.newsTableView.reloadData()
+            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
         }
         footer.repostTapped = { [weak self] in
             self?.news[section].newsDataModel[0].newsIsRepost.toggle()
-            self?.newsTableView.reloadData()
+            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
         }
         footer.commentTapped = { [weak self] in
             self?.news[section].newsDataModel[0].newsIsComment.toggle()
-            self?.newsTableView.reloadData()
+            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
         }
+        
+        // добавил белую рамку, чтобы был больше отступ (визуально, конечно) между футером и контентом
         footer.layer.borderWidth = 10
         footer.layer.borderColor = UIColor.white.cgColor
         footer.layer.backgroundColor = UIColor.white.cgColor
@@ -110,3 +119,4 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+// на две версии NewsFeed потрачено 8-9 часов

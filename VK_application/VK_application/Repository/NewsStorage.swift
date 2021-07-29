@@ -23,6 +23,7 @@ class NewsStorage {
                                     PhotoModel(name: "My team", fileName: "group_volleyball", likeCount: 1, isLike: false)
                                    ]
                 )],
+                data: "27.07.21",
                 newsImageName: "hinata2",
                 text: "Снова тренируемся с друзьями.",
                 newsDataModel: [
@@ -46,6 +47,7 @@ class NewsStorage {
                                     PhotoModel(name: "Baseball master", fileName: "tokuchi", likeCount: 9, isLike: false)
                                    ]
                 )],
+                data: "27.07.21",
                 newsImageName: "tokuchi2",
                 text: "Главный питчер команты Ликаонс уснул на скамейке!",
                 newsDataModel: [
@@ -58,7 +60,7 @@ class NewsStorage {
                 ]),
             
             NewsModel(
-                user: [FriendModel(name: "Okabe Rintaro (aka Hououin Kyouma, aka Mad Scientist)",
+                user: [FriendModel(name: "Okabe Rintaro (aka Mad Scientist)",
                                    avatarName: "Okabe1",
                                    groupsUser: [
                                        GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
@@ -68,6 +70,7 @@ class NewsStorage {
                                        PhotoModel(name: "Мы забираем машину времени", fileName: "Okabe3", likeCount: 14, isLike: false)
                                    ]
                        )],
+                data: "27.07.21",
                 newsImageName: "Okabe2",
                 text: "Кажется в этом времени я еще не появляся. Здравствуйте, я Джон Тайтор - ученый и путешественник во времени. Из-за интереса к одному эксперименту проводимого мной и другом Дару, к нашей лаборатории присоединилась Курису. Вскоре после этого, мы открыли, что созданная нами Мобиловолновка – это машина времени. С помощью Курису, я начал проводить эксперименты с Ди-мейлами (D-mail – сокращение от DeLorean Mail). Но своими действиями мы запустили череду несчастий, связанных с изменением прошлого, а следовательно и будущего.",
                 newsDataModel: [

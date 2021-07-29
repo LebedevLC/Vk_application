@@ -28,5 +28,27 @@ final class AddGroupViewCell: UITableViewCell {
         groupAvatarImageView.layer.borderWidth = 2
         groupAvatarImageView.layer.borderColor = UIColor.white.cgColor
         groupAvatarImageView.layer.cornerRadius = 35
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedImage))
+        groupAvatarImageView.addGestureRecognizer(tap)
+        groupAvatarImageView.isUserInteractionEnabled = true
+        }
+
+    @objc func tappedImage() {
+        UIView.animateKeyframes(withDuration: 0.6,
+                                delay: 0,
+                                options: [],
+                                animations: {
+                                    UIView.addKeyframe(withRelativeStartTime: 0,
+                                                       relativeDuration: 0.5,
+                                                       animations: {
+                                                        self.groupAvatarImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                                                       })
+                                    UIView.addKeyframe(withRelativeStartTime: 0.5,
+                                                       relativeDuration: 0.6,
+                                                       animations: {
+                                                        self.groupAvatarImageView.transform = .identity
+                                                       })
+                                },
+                                completion: nil)
     }
 }

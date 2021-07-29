@@ -7,15 +7,16 @@
 
 import UIKit
 
-final class NewsCell: UITableViewCell {
+final class NewsCellPhoto: UITableViewCell {
     
     @IBOutlet private var newsImageView: UIImageView!
     
-    static let reusedIdentifier = "NewsCell"
+    static let reusedIdentifier = "NewsCellPhoto"
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureStatic()
+        newsImageView.frame = bounds
     }
    
     override func prepareForReuse() {

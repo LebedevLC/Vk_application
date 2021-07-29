@@ -13,7 +13,10 @@ class GroupStorage{
     
     init() {
         group = [
-            GroupModel(nameGroup: "RKN", avatarGroup: "group_RKN")
+            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
+            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha"),
+            GroupModel(nameGroup: "Baseball", avatarGroup: "group_baseBall"),
+            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
         ]
         allGroups = [
             GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),

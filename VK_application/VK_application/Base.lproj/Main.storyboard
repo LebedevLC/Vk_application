@@ -216,27 +216,15 @@
             </objects>
             <point key="canvasLocation" x="2676" y="-1644"/>
         </scene>
-        <!--View Controller-->
+        <!--Messages Controller-->
         <scene sceneID="XyZ-gb-r1Y">
             <objects>
-                <viewController id="S2Q-o4-cwa" sceneMemberID="viewController">
+                <viewController id="S2Q-o4-cwa" customClass="MessagesController" customModule="VK_application" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dVf-qE-etb">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YgU-Dd-Cel">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="yhO-AP-gc0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="yhO-AP-gc0" firstAttribute="trailing" secondItem="YgU-Dd-Cel" secondAttribute="trailing" id="5cn-95-P5v"/>
-                            <constraint firstItem="yhO-AP-gc0" firstAttribute="bottom" secondItem="YgU-Dd-Cel" secondAttribute="bottom" id="FeW-fZ-uhP"/>
-                            <constraint firstItem="YgU-Dd-Cel" firstAttribute="top" secondItem="yhO-AP-gc0" secondAttribute="top" id="YLU-ro-eVq"/>
-                            <constraint firstItem="YgU-Dd-Cel" firstAttribute="leading" secondItem="yhO-AP-gc0" secondAttribute="leading" id="f6H-WX-HDE"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tRo-kY-Rxm"/>
                 </viewController>
@@ -686,7 +674,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XUE-eS-b04">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XUE-eS-b04">
                                 <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>

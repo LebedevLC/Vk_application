@@ -34,9 +34,13 @@ extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionVie
         cell.configure(photoModel: photo)
         cell.likeTapped = { [weak self] in
             self?.photoes[indexPath.item].isLike.toggle()
-            collectionView.reloadData()
+                collectionView.reloadSections(IndexSet(integer: 0)) //UIView.performWithoutAnimation
         }
         return cell
     }
     
 }
+
+
+
+

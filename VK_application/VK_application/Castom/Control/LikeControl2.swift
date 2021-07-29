@@ -12,6 +12,7 @@ final class LikeControl2: UIControl {
     var controlTapped: (() -> Void)?
     private var likeButton = UIButton()
     private var likeCountLabel = UILabel()
+    private var likeCounter: Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,26 +40,27 @@ final class LikeControl2: UIControl {
         likeCountLabel.translatesAutoresizingMaskIntoConstraints = false
         likeCountLabel.trailingAnchor.constraint(equalTo: likeButton.leadingAnchor, constant: -2).isActive = true
         likeCountLabel.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor).isActive = true
-//        animatedLabel()
+        
     }
     
     func configure(isLike: Bool, likeCount: Int) {
         likeCountLabel.text = String(likeCount)
         likeButton.isSelected = isLike
+        likeCounter = likeCount
     }
     
     @objc func tapControl(_ sender: UIButton) {
         controlTapped?()
+        animatedLabel(likeCount: likeCounter)
     }
     
-    private func animatedLabel() {
-//        UIView.transition(with: likeCountLabel,
-//                          duration: 0.2,
-//                          options: .transitionFlipFromLeft,
-//                          animations: { [unowned self] in
-//                            self.likeCountLabel.text = String(likeCounter)}
-//        )
-//
+    private func animatedLabel(likeCount: Int) {
+        UIView.transition(with: likeCountLabel,
+                          duration: 0.2,
+                          options: .transitionFlipFromTop,
+                          animations: { [unowned self] in
+                            self.likeCountLabel.text = String(likeCount)}
+        )
     }
     
 }

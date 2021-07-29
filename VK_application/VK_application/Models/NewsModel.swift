@@ -9,6 +9,7 @@ import Foundation
 
 struct NewsModel {
     let user: [FriendModel]
+    let data: String
     let newsImageName: String
     let text: String
     var newsDataModel: [NewsDataModel]

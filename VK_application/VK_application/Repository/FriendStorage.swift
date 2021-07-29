@@ -46,6 +46,18 @@ class FriendStorage {
                         ]
             ),
             
+            FriendModel(name: "Haruno Sakura", avatarName: "Sakura1",
+                        groupsUser: [
+                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
+                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                        ],
+                        photo: [
+                            PhotoModel(name: "Beauty", fileName: "Sakura2", likeCount: 10, isLike: false),
+                            PhotoModel(name: "Neko", fileName: "Sakura3", likeCount: 3, isLike: false),
+                            PhotoModel(name: "Art", fileName: "Sakura4", likeCount: 6, isLike: false)
+                        ]
+            ),
+            
             FriendModel(name: "Okabe Rintaro",
                         avatarName: "Okabe1",
                         groupsUser: [

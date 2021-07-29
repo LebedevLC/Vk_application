@@ -15,6 +15,8 @@ class UserGroupsViewController: UIViewController {
     private var groups: [GroupModel] = []
     private var filteredGroups: [GroupModel] = []  // массив для поиска
     
+    var isCanDelete: Bool = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,7 +63,9 @@ extension UserGroupsViewController: UISearchBarDelegate {
         // если пусто сбрасываем поиск и возвращаем значения групп из массива groups
         if searchText.isEmpty {
             filteredGroups = groups
+            isCanDelete = true
         } else {
+            isCanDelete = false
             // проходим по массиву groups в поиске введенных символов без учета регистра
             for group in groups {
                 if group.nameGroup.lowercased().contains(searchText.lowercased()) {
@@ -80,12 +84,12 @@ extension UserGroupsViewController: UISearchBarDelegate {
 
 extension UserGroupsViewController: UITableViewDelegate, UITableViewDataSource{
     
-    // Колличество строк в ячейке
+    // Колличество секций
     func numberOfSections(in tableView: UITableView) -> Int {
         1
     }
     
-    // Колличество ячеек
+    // Колличество ячеек в секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         filteredGroups.count
     }
@@ -111,8 +115,13 @@ extension UserGroupsViewController: UITableViewDelegate, UITableViewDataSource{
     // Удаление ячейки
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            groups.remove(at: indexPath.row)
+            guard isCanDelete == true
+            else {
+                return
+            }
+            filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
+            groups = filteredGroups
         }
     }
     
