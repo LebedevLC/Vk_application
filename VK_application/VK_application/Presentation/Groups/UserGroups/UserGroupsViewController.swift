@@ -115,10 +115,7 @@ extension UserGroupsViewController: UITableViewDelegate, UITableViewDataSource{
     // Удаление ячейки
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            guard isCanDelete == true
-            else {
-                return
-            }
+            guard isCanDelete else { return }
             filteredGroups.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
             groups = filteredGroups

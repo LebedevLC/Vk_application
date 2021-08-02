@@ -20,7 +20,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         self.configureStatic()
     }
-    
+        
     override func prepareForReuse() {
         super.prepareForReuse()
         self.photoImageView.image = nil
@@ -30,6 +30,8 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     func configureStatic() {
         photoImageView.layer.borderWidth = 3
         photoImageView.layer.borderColor = UIColor.white.cgColor
+//        photoImageView.layer.shadowRadius = 3
+//        photoImageView.layer.shadowColor = UIColor.black.cgColor
     }
     
     func configure(photoModel: PhotoModel) {

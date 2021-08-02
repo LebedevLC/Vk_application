@@ -22,7 +22,7 @@ final class NewsHeader: UITableViewHeaderFooterView {
         return label
     }()
     private var imageView = UIImageView()
-    private let avatarView = AvatarView()
+//    private let avatarView = AvatarView()
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

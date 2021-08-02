@@ -28,9 +28,9 @@ final class FriendsTableViewCell: UITableViewCell {
     
     func configureStatic() {
         avatarImageView.layer.borderWidth = 2
-        avatarImageView.layer.cornerRadius = 50
+        avatarImageView.layer.cornerRadius = 37
         avatarImageView.layer.borderWidth = 2
-        viewImageView.layer.cornerRadius = 50
+        viewImageView.layer.cornerRadius = 37
         viewImageView.layer.backgroundColor = UIColor.clear.cgColor
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedImage))
         avatarImageView.addGestureRecognizer(tap)

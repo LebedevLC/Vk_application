@@ -65,17 +65,17 @@ class MessagesController: UIViewController {
     private func setConstr() {
         view.addSubview(firstPoint)
         NSLayoutConstraint.activate([
-            firstPoint.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            firstPoint.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 15),
             firstPoint.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -30)
         ])
         view.addSubview(secondPoint)
         NSLayoutConstraint.activate([
-            secondPoint.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            secondPoint.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 15),
             secondPoint.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
         view.addSubview(thirdPoint)
         NSLayoutConstraint.activate([
-            thirdPoint.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            thirdPoint.topAnchor.constraint(equalTo: view.centerYAnchor, constant: 15),
             thirdPoint.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 30)
         ])
     }

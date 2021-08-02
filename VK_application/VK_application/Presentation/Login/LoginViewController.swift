@@ -17,7 +17,6 @@ final class LoginViewController: UIViewController {
     @IBOutlet private weak var loginTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var loginButton: UIButton!
-    @IBOutlet private weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,15 +96,12 @@ final class LoginViewController: UIViewController {
     private func sucsessLogin() {
 //      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2){}
         titleLabelView.text = "Подключаемся"
-        loadingIndicator.isHidden = false
-        loginTextField.isEnabled = false
         passwordTextField.isEnabled = false
         loginButton.isEnabled = false
         print("Sucsessful login!")
     }
     
     private func unsucsessLogin() {
-        loadingIndicator.isHidden = true
         print("Unsucsessful login!")
         showErrorAlert(message: "Неверный логин или пароль")
     }

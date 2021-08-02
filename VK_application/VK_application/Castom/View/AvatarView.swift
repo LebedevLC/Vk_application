@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AvatarView: UIView {
+class AvatarView: UIImageView {
     
     @IBInspectable var cornerRadius: CGFloat = 0 {
         didSet {
@@ -38,5 +38,17 @@ class AvatarView: UIView {
             self.layer.shadowOffset = shadowOffset
         }
     }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
 
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func layoutSubviews() {
+//        self.layer.shadowOpacity = 0.9
+    }
+    
 }

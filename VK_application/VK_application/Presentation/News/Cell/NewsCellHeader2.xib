@@ -22,7 +22,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A69-v5-Na4" customClass="AvatarView" customModule="VK_application" customModuleProvider="target">
                                 <rect key="frame" x="8" y="5" width="50" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Haruhi" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-9C-QZf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Hinata0" translatesAutoresizingMaskIntoConstraints="NO" id="Gzj-9C-QZf">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="1Kn-Yn-2Xe"/>
@@ -109,7 +109,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Haruhi" width="220" height="251"/>
+        <image name="Hinata0" width="500" height="488"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

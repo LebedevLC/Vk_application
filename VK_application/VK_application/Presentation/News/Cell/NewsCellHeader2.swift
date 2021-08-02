@@ -41,8 +41,5 @@ final class NewsCellHeader2: UITableViewCell {
     private func configureStatic() {
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         avatarView.layer.cornerRadius = 25
-        
-        //        newsImageView.layer.borderWidth = 2
-        //        newsImageView.layer.borderColor = UIColor.black.cgColor
     }
 }

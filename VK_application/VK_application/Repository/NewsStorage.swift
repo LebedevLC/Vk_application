@@ -14,7 +14,7 @@ class NewsStorage {
         news = [
             NewsModel(
                 user: [FriendModel(name: "See Hinata",
-                                   avatarName: "hinata",
+                                   avatarName: "Hinata0",
                                    groupsUser: [
                                     GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
                                     GroupModel(nameGroup: "Voleyball", avatarGroup: "group_volleyball"),
@@ -24,7 +24,7 @@ class NewsStorage {
                                    ]
                 )],
                 data: "27.07.21",
-                newsImageName: "hinata2",
+                newsImageName: "Hinata2",
                 text: "Снова тренируемся с друзьями.",
                 newsDataModel: [
                     NewsDataModel(newsLikeCount: 1,
@@ -38,17 +38,17 @@ class NewsStorage {
                 
             NewsModel(
                 user: [FriendModel(name: "Tokuchi Toa",
-                                   avatarName: "tokuchi",
+                                   avatarName: "Tokuchi0",
                                    groupsUser: [
                                     GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
                                     GroupModel(nameGroup: "Baseball", avatarGroup: "group_baseBall"),
                                    ],
                                    photo: [
-                                    PhotoModel(name: "Baseball master", fileName: "tokuchi", likeCount: 9, isLike: false)
+                                    PhotoModel(name: "Baseball master", fileName: "Tokuchi0", likeCount: 9, isLike: false)
                                    ]
                 )],
                 data: "27.07.21",
-                newsImageName: "tokuchi2",
+                newsImageName: "Tokuchi2",
                 text: "Главный питчер команты Ликаонс уснул на скамейке!",
                 newsDataModel: [
                     NewsDataModel(newsLikeCount: 2,
@@ -61,7 +61,7 @@ class NewsStorage {
             
             NewsModel(
                 user: [FriendModel(name: "Okabe Rintaro (aka Mad Scientist)",
-                                   avatarName: "Okabe1",
+                                   avatarName: "Okabe0",
                                    groupsUser: [
                                        GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
                                        GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")

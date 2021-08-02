@@ -17,10 +17,29 @@ final class PhotoFriendViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+//        collectionView.allowsMultipleSelection = false
+    }
+    
+    // Передача на следующий контроллер всех изображений объекта и IndexPath выделенного
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            // Проверям сегу
+            segue.identifier == "toBigPhoto",
+            // Кастим
+            let destinationController = segue.destination as? BigPhotoViewController,
+            // Сохраняем индексы выбранных изображений
+            let indexPaths = collectionView.indexPathsForSelectedItems
+        else { return }
+        // Кастим чтобы получить не массив
+        let indexPath = indexPaths[0] as IndexPath
+        // Отправляем
+        destinationController.bigPhotoes = photoes
+        destinationController.sourceIndexPath = indexPath
     }
     
 }
 
+//MARK:- Extension CollectionView (DataSource/Delegate)
 extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -40,7 +59,3 @@ extension PhotoFriendViewController: UICollectionViewDataSource, UICollectionVie
     }
     
 }
-
-
-
-
