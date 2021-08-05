@@ -36,6 +36,12 @@
 		467165BA26B449FD001C9E8D /* PhotoFrientCastomLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165B926B449FD001C9E8D /* PhotoFrientCastomLayout.swift */; };
 		467165BD26B573E4001C9E8D /* BigPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165BC26B573E4001C9E8D /* BigPhotoViewController.swift */; };
 		467165BF26B76E00001C9E8D /* BigPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165BE26B76E00001C9E8D /* BigPhotoView.swift */; };
+		467165C626BBC856001C9E8D /* InteractivTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165C526BBC856001C9E8D /* InteractivTransition.swift */; };
+		467165C926BBD1C3001C9E8D /* CustomNavConInteractiv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165C826BBD1C3001C9E8D /* CustomNavConInteractiv.swift */; };
+		467165D226BBE630001C9E8D /* PopAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165CF26BBE630001C9E8D /* PopAnimator.swift */; };
+		467165D326BBE630001C9E8D /* PushAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165D026BBE630001C9E8D /* PushAnimator.swift */; };
+		467165D426BBE630001C9E8D /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165D126BBE630001C9E8D /* Animator.swift */; };
+		467165D626BBF0C6001C9E8D /* NewAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 467165D526BBF0C6001C9E8D /* NewAvatarView.swift */; };
 		46751C3F26B1B4D800762EC5 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46751C3E26B1B4D800762EC5 /* MessagesController.swift */; };
 		46928FC42690A5010031E16F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46928FC32690A5010031E16F /* LoginViewController.swift */; };
 		469F57A9269089F200F3A697 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F57A8269089F200F3A697 /* AppDelegate.swift */; };
@@ -91,6 +97,12 @@
 		467165B926B449FD001C9E8D /* PhotoFrientCastomLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoFrientCastomLayout.swift; sourceTree = "<group>"; };
 		467165BC26B573E4001C9E8D /* BigPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPhotoViewController.swift; sourceTree = "<group>"; };
 		467165BE26B76E00001C9E8D /* BigPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPhotoView.swift; sourceTree = "<group>"; };
+		467165C526BBC856001C9E8D /* InteractivTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractivTransition.swift; sourceTree = "<group>"; };
+		467165C826BBD1C3001C9E8D /* CustomNavConInteractiv.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavConInteractiv.swift; sourceTree = "<group>"; };
+		467165CF26BBE630001C9E8D /* PopAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopAnimator.swift; sourceTree = "<group>"; };
+		467165D026BBE630001C9E8D /* PushAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushAnimator.swift; sourceTree = "<group>"; };
+		467165D126BBE630001C9E8D /* Animator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
+		467165D526BBF0C6001C9E8D /* NewAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAvatarView.swift; sourceTree = "<group>"; };
 		46751C3E26B1B4D800762EC5 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		46928FC32690A5010031E16F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		469F57A5269089F200F3A697 /* VK_application.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VK_application.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -222,6 +234,7 @@
 		4638E5C426A07BEE004E26A2 /* Castom */ = {
 			isa = PBXGroup;
 			children = (
+				467165C726BBD183001C9E8D /* NavController */,
 				4638E5CB26A1E0DC004E26A2 /* View */,
 				4638E5CA26A1E0D1004E26A2 /* Control */,
 			);
@@ -259,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				4638E5C226A04B0F004E26A2 /* AvatarView.swift */,
+				467165D526BBF0C6001C9E8D /* NewAvatarView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -304,6 +318,49 @@
 				467165BE26B76E00001C9E8D /* BigPhotoView.swift */,
 			);
 			path = BigPhoto;
+			sourceTree = "<group>";
+		};
+		467165C026BAB2CA001C9E8D /* Segue */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Segue;
+			sourceTree = "<group>";
+		};
+		467165C326BBC813001C9E8D /* CastomTransition */ = {
+			isa = PBXGroup;
+			children = (
+				467165CE26BBE615001C9E8D /* Animators */,
+				467165C426BBC835001C9E8D /* InteractivTransition */,
+				467165C026BAB2CA001C9E8D /* Segue */,
+			);
+			path = CastomTransition;
+			sourceTree = "<group>";
+		};
+		467165C426BBC835001C9E8D /* InteractivTransition */ = {
+			isa = PBXGroup;
+			children = (
+				467165C526BBC856001C9E8D /* InteractivTransition.swift */,
+			);
+			path = InteractivTransition;
+			sourceTree = "<group>";
+		};
+		467165C726BBD183001C9E8D /* NavController */ = {
+			isa = PBXGroup;
+			children = (
+				467165C826BBD1C3001C9E8D /* CustomNavConInteractiv.swift */,
+			);
+			path = NavController;
+			sourceTree = "<group>";
+		};
+		467165CE26BBE615001C9E8D /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				467165D126BBE630001C9E8D /* Animator.swift */,
+				467165CF26BBE630001C9E8D /* PopAnimator.swift */,
+				467165D026BBE630001C9E8D /* PushAnimator.swift */,
+			);
+			path = Animators;
 			sourceTree = "<group>";
 		};
 		46928FBD2690A4180031E16F /* AppDelegate */ = {
@@ -371,6 +428,7 @@
 		469F57A7269089F200F3A697 /* VK_application */ = {
 			isa = PBXGroup;
 			children = (
+				467165C326BBC813001C9E8D /* CastomTransition */,
 				4638E5C626A1A1E5004E26A2 /* Librarys */,
 				4638E5C426A07BEE004E26A2 /* Castom */,
 				460E71582699B50100261821 /* Repository */,
@@ -499,6 +557,7 @@
 				460E71522699966700261821 /* MyFriends.swift in Sources */,
 				463994E326B04A36002AAF6D /* NewsCellText.swift in Sources */,
 				46928FC42690A5010031E16F /* LoginViewController.swift in Sources */,
+				467165D326BBE630001C9E8D /* PushAnimator.swift in Sources */,
 				460E7175269DFDCC00261821 /* AddGroupViewCell.swift in Sources */,
 				46EB458326AD827600183E66 /* CommentControl.swift in Sources */,
 				460E715A2699B53D00261821 /* FriendStorage.swift in Sources */,
@@ -518,12 +577,14 @@
 				4638E5C926A1A248004E26A2 /* ColorRandomExtension.swift in Sources */,
 				460E71642699E8BE00261821 /* AddFriendsViewController.swift in Sources */,
 				460E715E2699E23500261821 /* GroupStorage.swift in Sources */,
+				467165D226BBE630001C9E8D /* PopAnimator.swift in Sources */,
 				4638E5C326A04B0F004E26A2 /* AvatarView.swift in Sources */,
 				467165BD26B573E4001C9E8D /* BigPhotoViewController.swift in Sources */,
 				46EB458126AD7C4500183E66 /* RepostControl.swift in Sources */,
 				46EB458526AD89F900183E66 /* NewsStorage.swift in Sources */,
 				46EB457926AADA6700183E66 /* NewsViewController.swift in Sources */,
 				4638E5D226A5D310004E26A2 /* LettersControl.swift in Sources */,
+				467165D426BBE630001C9E8D /* Animator.swift in Sources */,
 				46EB456E26A83DF900183E66 /* AddFriendsViewHeader.swift in Sources */,
 				467165BA26B449FD001C9E8D /* PhotoFrientCastomLayout.swift in Sources */,
 				460E7177269E01C100261821 /* UserGroupTableViewCell.swift in Sources */,
@@ -534,9 +595,12 @@
 				46EB458D26AEEB1F00183E66 /* ViewsControl.swift in Sources */,
 				460E71552699B28600261821 /* FriendModel.swift in Sources */,
 				46EB458726ADA30400183E66 /* NewsDataModel.swift in Sources */,
+				467165C926BBD1C3001C9E8D /* CustomNavConInteractiv.swift in Sources */,
+				467165D626BBF0C6001C9E8D /* NewAvatarView.swift in Sources */,
 				46EB457F26AD74E200183E66 /* NewsModel.swift in Sources */,
 				46EB457D26AAE05400183E66 /* NewsFooter.swift in Sources */,
 				460E716A269B185500261821 /* PhotoModel.swift in Sources */,
+				467165C626BBC856001C9E8D /* InteractivTransition.swift in Sources */,
 				460E71572699B41500261821 /* GroupModel.swift in Sources */,
 				46EB457726AAD9AA00183E66 /* NewsCellPhoto.swift in Sources */,
 				4638E5CF26A43994004E26A2 /* LikeControl2.swift in Sources */,

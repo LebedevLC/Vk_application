@@ -14,6 +14,7 @@ final class UserGroupTableViewCell: UITableViewCell {
     
     static let reusedIdentifire = "UserGroupTableViewCell"
     
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureStatic()
@@ -28,6 +29,7 @@ final class UserGroupTableViewCell: UITableViewCell {
         groupImageView.layer.borderWidth = 2
         groupImageView.layer.borderColor = UIColor.white.cgColor
         groupImageView.layer.cornerRadius = 50
+        
         // добавляем обработку нажатий на UIImage
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedImage))
         groupImageView.addGestureRecognizer(tap)

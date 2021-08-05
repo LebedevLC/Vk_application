@@ -15,15 +15,19 @@ final class FriendsTableViewCell: UITableViewCell {
     
     static let reusedIdentifire = "FriendsTableViewCell"
     
+    var avatarTapped: (() -> Void)?
+    var indexPathCell: IndexPath?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureStatic()
     }
     
-    func configure(friend: FriendModel) {
+    func configure(friend: FriendModel, indexPathFromTable: IndexPath) {
         avatarImageView.layer.borderColor = UIColor.random().cgColor  // просто для красоты
         avatarImageView.image = UIImage(named: friend.avatarName)
         nameLabel.text = friend.name
+        indexPathCell = indexPathFromTable
     }
     
     func configureStatic() {
@@ -38,22 +42,26 @@ final class FriendsTableViewCell: UITableViewCell {
         }
 
     @objc func tappedImage() {
-        UIView.animateKeyframes(withDuration: 0.6,
-                                delay: 0,
-                                options: [],
-                                animations: {
-                                    UIView.addKeyframe(withRelativeStartTime: 0,
-                                                       relativeDuration: 0.5,
-                                                       animations: {
-                                                        self.avatarImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                                                       })
-                                    UIView.addKeyframe(withRelativeStartTime: 0.5,
-                                                       relativeDuration: 0.6,
-                                                       animations: {
-                                                        self.avatarImageView.transform = .identity
-                                                       })
-                                },
-                                completion: nil)
+        UIView.animateKeyframes(
+            withDuration: 0.3,
+            delay: 0,
+            options: [],
+            animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0,
+                                   relativeDuration: 0.5,
+                                   animations: {
+                                    self.avatarImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                                   })
+                UIView.addKeyframe(withRelativeStartTime: 0.5,
+                                   relativeDuration: 0.6,
+                                   animations: {
+                                    self.avatarImageView.transform = .identity
+                                   })
+            },
+            // реализовать переход по индексу ячейки
+            completion: {_ in
+                self.avatarTapped?()
+            })
     }
     
 }

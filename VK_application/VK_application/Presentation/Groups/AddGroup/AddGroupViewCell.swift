@@ -27,7 +27,7 @@ final class AddGroupViewCell: UITableViewCell {
     func configureStatic() {
         groupAvatarImageView.layer.borderWidth = 2
         groupAvatarImageView.layer.borderColor = UIColor.white.cgColor
-        groupAvatarImageView.layer.cornerRadius = 35
+        groupAvatarImageView.layer.cornerRadius = 75/2
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedImage))
         groupAvatarImageView.addGestureRecognizer(tap)
         groupAvatarImageView.isUserInteractionEnabled = true

@@ -12,6 +12,7 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     @IBOutlet var photoImageView: UIImageView!
     @IBOutlet var photoNameLabel: UILabel!
     @IBOutlet var likeControl2: LikeControl2!
+    @IBOutlet var newAvatarView: NewAvatarView!
     
     static let identifier = "PhotoCollectionViewCell"
     var likeTapped: (() -> Void)?
@@ -28,10 +29,10 @@ final class PhotoCollectionViewCell: UICollectionViewCell {
     }
     
     func configureStatic() {
-        photoImageView.layer.borderWidth = 3
+        photoImageView.layer.borderWidth = 1
         photoImageView.layer.borderColor = UIColor.white.cgColor
-//        photoImageView.layer.shadowRadius = 3
-//        photoImageView.layer.shadowColor = UIColor.black.cgColor
+        newAvatarView.layer.cornerRadius = 10
+        photoImageView.layer.cornerRadius = 10
     }
     
     func configure(photoModel: PhotoModel) {

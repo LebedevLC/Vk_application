@@ -29,19 +29,29 @@ class BigPhotoView: UIView {
         rightView.contentMode = .scaleAspectFit
         return rightView
     }()
+    private var nameLabel: UILabel = {
+        let nameLabel = UILabel()
+        nameLabel.text = ""
+        nameLabel.textColor = .white
+        nameLabel.textAlignment = .center
+        nameLabel.font = UIFont.boldSystemFont(ofSize: 17)
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        return nameLabel
+    }()
     private var panGesture: UIPanGestureRecognizer?
     private var beginCenterXVisibleView: CGFloat = 0
     private var beginCenterXRightView: CGFloat = 0
     private var beginCenterXLeftView: CGFloat = 0
     private let scale = CGAffineTransform(scaleX: 0.85, y: 0.85)
-    var colors: [String] = []
+    var namePhoto: [String] = []
+    var photoes: [String] = []
     var visibleIndex: Int = 0
     
     override func layoutSubviews() {
         super.layoutSubviews()
         setViews()
         setGesture()
-        setColors()
+        setPhotos()
         beginCenterXVisibleView = visibleView.center.x
         beginCenterXRightView = rightView.center.x
         beginCenterXLeftView = leftView.center.x
@@ -51,6 +61,7 @@ class BigPhotoView: UIView {
         addSubview(leftView)
         addSubview(rightView)
         addSubview(visibleView)
+        addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
             visibleView.widthAnchor.constraint(equalTo: self.widthAnchor),
@@ -67,6 +78,11 @@ class BigPhotoView: UIView {
             rightView.heightAnchor.constraint(equalTo: self.widthAnchor),
             rightView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             rightView.leadingAnchor.constraint(equalTo: visibleView.trailingAnchor, constant: 15),
+            
+            nameLabel.topAnchor.constraint(equalTo: visibleView.topAnchor, constant: -40),
+            nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            nameLabel.heightAnchor.constraint(equalToConstant: 40),
+            nameLabel.widthAnchor.constraint(equalToConstant: 370)
         ])
     }
     
@@ -79,17 +95,18 @@ class BigPhotoView: UIView {
         visibleView.addGestureRecognizer(gesture)
     }
     
-    private func setColors() {
+    private func setPhotos() {
         guard
-            !colors.isEmpty,
-            colors.count > visibleIndex && visibleIndex >= 0
+            !photoes.isEmpty,
+            photoes.count > visibleIndex && visibleIndex >= 0
         else {
             print("Error index for visible view")
             return
         }
-        visibleView.image = UIImage(named: colors[visibleIndex])
-        leftView.image = UIImage(named: colors[earlyIndex()])
-        rightView.image = UIImage(named: colors[nextIndex()])
+        visibleView.image = UIImage(named: photoes[visibleIndex])
+        leftView.image = UIImage(named: photoes[earlyIndex()])
+        rightView.image = UIImage(named: photoes[nextIndex()])
+        nameLabel.text = namePhoto[visibleIndex]
         visibleView.isUserInteractionEnabled = true
     }
     
@@ -121,7 +138,7 @@ class BigPhotoView: UIView {
     }
     
     private func nextIndex() -> Int {
-        let lastIndex = colors.count - 1
+        let lastIndex = photoes.count - 1
         if lastIndex == visibleIndex {
             return 0
         } else {
@@ -130,7 +147,7 @@ class BigPhotoView: UIView {
     }
     
     private func earlyIndex() -> Int {
-        let lastIndex = colors.count - 1
+        let lastIndex = photoes.count - 1
         if visibleIndex == 0 {
             return lastIndex
         } else {
@@ -138,7 +155,7 @@ class BigPhotoView: UIView {
         }
     }
     
-    func transformAnimate(){
+   private func transformAnimate() {
         UIView.animate(
             withDuration: 0.5,
             delay: 0,
@@ -147,9 +164,26 @@ class BigPhotoView: UIView {
                 self.visibleView.transform = .identity
                 self.rightView.transform = .identity
                 self.leftView.transform = .identity
+                if self.nameLabel.alpha == 0 {
+                    self.nameLabel.alpha = 1
+                } else {
+                    self.nameLabel.alpha = 0
+                }
+            }, completion: { _ in
+                self.nameLabel.alpha = 1
+                self.labelAlphaAnimate()
             })
     }
     
+    private func labelAlphaAnimate() {
+        UIView.animate(
+            withDuration: 1,
+            delay: 3,
+            options: [.curveEaseOut,],
+            animations: { [unowned self] in
+                self.nameLabel.alpha = 0
+            })
+    }
     
     private func startAnimate(_ direction: DirectionAnimation) {
         visibleView.isUserInteractionEnabled = false
@@ -176,7 +210,7 @@ class BigPhotoView: UIView {
             self.visibleView.center.x = self.beginCenterXVisibleView
             self.leftView.center.x = self.beginCenterXLeftView
             self.rightView.center.x = self.beginCenterXRightView
-            self.setColors()
+            self.setPhotos()
         }
     }
     

@@ -11,27 +11,40 @@ class MyFriends: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    var friends: [FriendModel] = []
+    private var friends: [FriendModel] = []
+    private var tapedInAvatar: Bool = false
+    private var indexPathForPrepare: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         friends = FriendStorage().friend
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard
+            // проверяем какая сега хочет запуститься
             segue.identifier == "moveToPhoto",
-            let destinationController = segue.destination as? PhotoFriendViewController,
-            let indexPath = tableView.indexPathForSelectedRow
-        else {
-            return
+            // кастим целевой контроллер
+            let destinationController = segue.destination as? PhotoFriendViewController
+        else { return }
+        // костыли-велосипеды
+        switch tapedInAvatar {
+        case true:
+            // если тап на аватарку, то читаем IndexPath её замыкания
+            self.indexPathForPrepare = sender as? IndexPath
+        case false:
+            // иначе читаем с выбранной ячейки
+            self.indexPathForPrepare = tableView.indexPathForSelectedRow
         }
-        let friend = friends[indexPath.row]
+        // заполняем данные выбранной ячейки
+        let friend = friends[indexPathForPrepare!.row]
+        // передаем фото
         destinationController.photoes = friend.photo
+        // передаем название
         destinationController.title = friend.name
-        
+        // возвращаем значение идентификатора нажатия (костыля)
+        self.tapedInAvatar = false
     }
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
@@ -75,7 +88,11 @@ extension MyFriends: UITableViewDelegate, UITableViewDataSource{
         }
         friends = friends.sorted(by: { $0.name < $1.name})
         let friend = friends[indexPath.row]
-        cell.configure(friend: friend)
+        cell.configure(friend: friend, indexPathFromTable: indexPath)
+        cell.avatarTapped = { [weak self] in
+            self?.tapedInAvatar = true
+            self?.performSegue(withIdentifier: "moveToPhoto", sender: indexPath)
+        }
         return cell
     }
     
@@ -87,3 +104,5 @@ extension MyFriends: UITableViewDelegate, UITableViewDataSource{
     }
     
 }
+
+// 2-3 часика на переход по аватаке

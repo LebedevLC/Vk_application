@@ -173,7 +173,7 @@
         <!--Друзья-->
         <scene sceneID="7de-6T-lJg">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yxQ-KP-tdN" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yxQ-KP-tdN" customClass="CustomNavConInteractiv" customModule="VK_application" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Друзья" image="person.2" catalog="system" selectedImage="person.2.fill" id="kX7-va-fL6"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="rsb-Zs-vUv">
@@ -182,7 +182,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="gba-fz-IYu" kind="relationship" relationship="rootViewController" destinationCreationSelector="moveToPhoto:" id="LyI-kp-4WZ"/>
+                        <segue destination="gba-fz-IYu" kind="relationship" relationship="rootViewController" id="LyI-kp-4WZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Dwa-qY-eNj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -285,7 +285,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="398.33333333333331" height="94"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-FZ-4Eq" customClass="AvatarView" customModule="VK_application" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iAb-FZ-4Eq" customClass="NewAvatarView" customModule="VK_application" customModuleProvider="target">
                                                     <rect key="frame" x="28" y="9" width="75" height="75.333333333333329"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M6R-G8-BaZ">
@@ -297,29 +297,12 @@
                                                         <constraint firstAttribute="width" constant="75" id="0Gh-8J-6b5"/>
                                                         <constraint firstItem="M6R-G8-BaZ" firstAttribute="height" secondItem="iAb-FZ-4Eq" secondAttribute="height" id="DST-9o-2CD"/>
                                                         <constraint firstItem="M6R-G8-BaZ" firstAttribute="width" secondItem="iAb-FZ-4Eq" secondAttribute="height" multiplier="1:1" id="LYm-gP-6yo"/>
-                                                        <constraint firstAttribute="height" constant="75" id="ZdF-OE-05G"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="75" id="ZdF-OE-05G"/>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="fFf-QY-u85"/>
                                                         <constraint firstItem="M6R-G8-BaZ" firstAttribute="centerY" secondItem="iAb-FZ-4Eq" secondAttribute="centerY" id="sqp-zX-bRI"/>
                                                         <constraint firstItem="M6R-G8-BaZ" firstAttribute="centerX" secondItem="iAb-FZ-4Eq" secondAttribute="centerX" id="vbm-jD-VmX"/>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="xSb-ib-KIU"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="25"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                            <size key="value" width="0.0" height="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ge-gu-6UX">
                                                     <rect key="frame" x="122.00000000000001" y="37" width="252.33333333333337" height="20"/>
@@ -405,17 +388,17 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PhotoCollectionViewCell" id="ZoC-xr-Skb" customClass="PhotoCollectionViewCell" customModule="VK_application" customModuleProvider="target">
-                                        <rect key="frame" x="26" y="0.0" width="376" height="416"/>
+                                        <rect key="frame" x="26" y="0.0" width="376" height="423"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="YYM-g6-1vz">
-                                            <rect key="frame" x="0.0" y="0.0" width="376" height="416"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="423"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzG-mP-xIr" customClass="AvatarView" customModule="VK_application" customModuleProvider="target">
-                                                    <rect key="frame" x="8" y="29" width="360" height="360"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vzG-mP-xIr" customClass="NewAvatarView" customModule="VK_application" customModuleProvider="target">
+                                                    <rect key="frame" x="8" y="29" width="360" height="367"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fcw-ne-d9Z">
-                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="360"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="360" height="367"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -423,33 +406,19 @@
                                                         <constraint firstAttribute="trailing" secondItem="fcw-ne-d9Z" secondAttribute="trailing" priority="999" id="DcQ-d5-rl4"/>
                                                         <constraint firstItem="fcw-ne-d9Z" firstAttribute="top" secondItem="vzG-mP-xIr" secondAttribute="top" id="EY2-HK-TX0"/>
                                                         <constraint firstItem="fcw-ne-d9Z" firstAttribute="leading" secondItem="vzG-mP-xIr" secondAttribute="leading" id="HBk-kS-OG9"/>
-                                                        <constraint firstAttribute="height" constant="360" id="JsH-tD-hVu"/>
                                                         <constraint firstAttribute="bottom" secondItem="fcw-ne-d9Z" secondAttribute="bottom" id="Yyl-x4-oal"/>
-                                                        <constraint firstAttribute="width" constant="360" id="xBM-kX-2mX"/>
+                                                        <constraint firstAttribute="width" priority="999" constant="360" id="xBM-kX-2mX"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                            <size key="value" width="0.0" height="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYl-vY-mak">
                                                     <rect key="frame" x="8" y="8" width="319" height="17"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="17" id="UVF-j4-UMT"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="17" id="UVF-j4-UMT"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <size key="shadowOffset" width="0.0" height="0.0"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pbk-8S-pgD" customClass="LikeControl2" customModule="VK_application" customModuleProvider="target">
                                                     <rect key="frame" x="343" y="2" width="25" height="25"/>
@@ -473,26 +442,10 @@
                                                 <constraint firstAttribute="bottom" secondItem="vzG-mP-xIr" secondAttribute="bottom" constant="27" id="bpL-Xl-1YP"/>
                                                 <constraint firstItem="xYl-vY-mak" firstAttribute="top" secondItem="YYM-g6-1vz" secondAttribute="top" constant="8" id="fHC-bE-gmj"/>
                                             </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                    <size key="value" width="0.0" height="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
                                         </collectionViewCellContentView>
                                         <connections>
                                             <outlet property="likeControl2" destination="Pbk-8S-pgD" id="BZ2-1Z-oGc"/>
+                                            <outlet property="newAvatarView" destination="vzG-mP-xIr" id="5hb-Pb-Rmk"/>
                                             <outlet property="photoImageView" destination="fcw-ne-d9Z" id="Dey-x7-VlD"/>
                                             <outlet property="photoNameLabel" destination="xYl-vY-mak" id="Faz-YW-67o"/>
                                             <segue destination="HbY-7y-7Rf" kind="show" identifier="toBigPhoto" id="meb-rX-lez"/>
@@ -597,7 +550,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="154.33332824707031"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCT-to-U4D" customClass="AvatarView" customModule="VK_application" customModuleProvider="target">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCT-to-U4D" customClass="NewAvatarView" customModule="VK_application" customModuleProvider="target">
                                                     <rect key="frame" x="36" y="26.999999999999993" width="100" height="100.33333333333331"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xxb-pU-C1m">
@@ -611,27 +564,10 @@
                                                         <constraint firstItem="xxb-pU-C1m" firstAttribute="centerY" secondItem="OCT-to-U4D" secondAttribute="centerY" id="P6O-bc-Cqe"/>
                                                         <constraint firstItem="xxb-pU-C1m" firstAttribute="top" secondItem="OCT-to-U4D" secondAttribute="top" id="X4r-Fr-HzH"/>
                                                         <constraint firstItem="xxb-pU-C1m" firstAttribute="centerX" secondItem="OCT-to-U4D" secondAttribute="centerX" id="a87-1h-Nky"/>
-                                                        <constraint firstAttribute="height" constant="100" id="b2g-Uo-qzW"/>
+                                                        <constraint firstAttribute="height" priority="999" constant="100" id="b2g-Uo-qzW"/>
                                                         <constraint firstAttribute="trailing" secondItem="xxb-pU-C1m" secondAttribute="trailing" id="hSm-1h-rJC"/>
                                                         <constraint firstAttribute="bottom" secondItem="xxb-pU-C1m" secondAttribute="bottom" id="tiq-PM-BwR"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                            <size key="value" width="0.0" height="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="50"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SZm-Tt-eEl">
                                                     <rect key="frame" x="152" y="66.666666666666671" width="240" height="21"/>
@@ -762,7 +698,7 @@
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3jM-Z8-fpq">
                                                             <rect key="frame" x="0.0" y="0.0" width="75" height="75.333333333333329"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="75" id="Ob9-Va-Nht"/>
+                                                                <constraint firstAttribute="height" priority="999" constant="75" id="Ob9-Va-Nht"/>
                                                                 <constraint firstAttribute="width" constant="75" id="hoU-Yc-XlK"/>
                                                             </constraints>
                                                         </imageView>
@@ -774,23 +710,6 @@
                                                         <constraint firstAttribute="bottom" secondItem="3jM-Z8-fpq" secondAttribute="bottom" id="iVI-pg-cnk"/>
                                                         <constraint firstAttribute="trailing" secondItem="3jM-Z8-fpq" secondAttribute="trailing" id="tFc-XV-Gp3"/>
                                                     </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="35"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                            <real key="value" value="10"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                            <size key="value" width="0.0" height="0.0"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                            <real key="value" value="1"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0tg-oW-G13">
                                                     <rect key="frame" x="36" y="54.333333333333336" width="265" height="20.666666666666664"/>
