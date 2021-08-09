@@ -10,4 +10,9 @@ import Foundation
 struct GroupModel {
     let nameGroup: String
     let avatarGroup: String
+    let logoImage: String
+    let shortDescription: String
+    let fullDescription: String
+    let subscribersCount: Int
+    
 }

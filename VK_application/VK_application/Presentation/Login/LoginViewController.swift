@@ -94,7 +94,6 @@ final class LoginViewController: UIViewController {
     }
     
     private func sucsessLogin() {
-//      DispatchQueue.main.asyncAfter(wallDeadline: .now() + 2){}
         titleLabelView.text = "Подключаемся"
         passwordTextField.isEnabled = false
         loginButton.isEnabled = false

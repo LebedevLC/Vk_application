@@ -11,18 +11,23 @@ final class UserGroupTableViewCell: UITableViewCell {
     
     @IBOutlet var groupImageView: UIImageView!
     @IBOutlet var groupNameLabel: UILabel!
+    @IBOutlet var shortDescriptionLabel: UILabel!
     
     static let reusedIdentifire = "UserGroupTableViewCell"
     
+    var avatarTapped: (() -> Void)?
+    var indexPathCell: IndexPath?
     
     override func layoutSubviews() {
         super.layoutSubviews()
         self.configureStatic()
     }
     
-    func configure(group: GroupModel) {
+    func configure(group: GroupModel, indexPathFromTable: IndexPath) {
         groupImageView.image = UIImage(named: group.avatarGroup)
         groupNameLabel.text = group.nameGroup
+        shortDescriptionLabel.text = group.shortDescription
+        indexPathCell = indexPathFromTable
     }
     
     func configureStatic() {
@@ -37,22 +42,25 @@ final class UserGroupTableViewCell: UITableViewCell {
         }
 
     @objc func tappedImage() {
-        UIView.animateKeyframes(withDuration: 0.6,
-                                delay: 0,
-                                options: [.repeat],  // уж очень красиво с репитом выглядит, будто сердце бьется
-                                animations: {
-                                    UIView.addKeyframe(withRelativeStartTime: 0,
-                                                       relativeDuration: 0.5,
-                                                       animations: {
-                                                        self.groupImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
-                                                       })
-                                    UIView.addKeyframe(withRelativeStartTime: 0.5,
-                                                       relativeDuration: 0.6,
-                                                       animations: {
-                                                        self.groupImageView.transform = .identity
-                                                       })
-                                },
-                                completion: nil)
+        UIView.animateKeyframes(
+            withDuration: 0.6,
+            delay: 0,
+            options: [], 
+            animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0,
+                                   relativeDuration: 0.5,
+                                   animations: {
+                                    self.groupImageView.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                                   })
+                UIView.addKeyframe(withRelativeStartTime: 0.5,
+                                   relativeDuration: 0.6,
+                                   animations: {
+                                    self.groupImageView.transform = .identity
+                                   })
+            },
+            completion: {_ in
+                self.avatarTapped?()
+            })
     }
     
 }

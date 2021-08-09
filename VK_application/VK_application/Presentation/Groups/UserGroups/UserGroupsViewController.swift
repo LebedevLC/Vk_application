@@ -12,26 +12,52 @@ class UserGroupsViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var groupTableView: UITableView!
     
+    // массивы данных о группах
     private var groups: [GroupModel] = []
-    private var filteredGroups: [GroupModel] = []  // массив для поиска
-    
-    var isCanDelete: Bool = true
+    private var filteredGroups: [GroupModel] = []
+    // для фильтрации
+    private var isCanDelete: Bool = true
+    // переменные для перехода
+    private var tapedInAvatar: Bool = false
+    private var indexPathForPrepare: IndexPath?
+    // для клавиатуры
+    private var tapGesture: UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         searchBar.delegate = self
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        groupTableView.addGestureRecognizer(tapGesture)
-        
         let storage = GroupStorage()
         groups = storage.group
         // заполняем массив для поиска
         filteredGroups = groups
     }
     
-    // Сега для добавления новой группы из контроллера AddGroupViewController(sourceController) в текущий контроллер
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            // проверяем какая сега хочет запуститься
+            segue.identifier == "moveToProfileGroup",
+            // кастим целевой контроллер
+            let destinationController = segue.destination as? ProfileGroupVC
+        else { return }
+        // костыли-велосипеды
+        switch tapedInAvatar {
+        case true:
+            // если тап на аватарку, то читаем IndexPath её замыкания
+            self.indexPathForPrepare = sender as? IndexPath
+        case false:
+            // иначе читаем с выбранной ячейки
+            self.indexPathForPrepare = groupTableView.indexPathForSelectedRow
+        }
+        // заполняем данные выбранной ячейки
+        let group = groups[indexPathForPrepare!.row]
+        // передаем данные ячейки
+        destinationController.groupData = group
+        // меняем значение идентификатора нажатия (костыля)
+        self.tapedInAvatar = false
+    }
+    
+    // Сега для добавления новой группы из контроллера
+    // AddGroupViewController(sourceController) в текущий контроллер
     @IBAction func addGroup(_ segue: UIStoryboardSegue) {
         guard
             segue.identifier == "addGroup",
@@ -58,9 +84,7 @@ extension UserGroupsViewController: UISearchBarDelegate {
     
     // функция активируется при изменении текста в searchBar
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        // опустошаем массив
         filteredGroups = []
-        // если пусто сбрасываем поиск и возвращаем значения групп из массива groups
         if searchText.isEmpty {
             filteredGroups = groups
             isCanDelete = true
@@ -69,13 +93,28 @@ extension UserGroupsViewController: UISearchBarDelegate {
             // проходим по массиву groups в поиске введенных символов без учета регистра
             for group in groups {
                 if group.nameGroup.lowercased().contains(searchText.lowercased()) {
-                    // добавляем результат в отфильтрованный масив
                     filteredGroups.append(group)
                 }
             }
         }
-        // обновляем данные в таблице
-        self.groupTableView.reloadData()
+        groupTableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        // Добавляем обработчик жестов, когда пользователь вызвал клавиаруту у UISearchBar
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        groupTableView.addGestureRecognizer(tapGesture!)
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        // Убираем обработчик нажатий, когда пользователь ткнул в другое место
+        groupTableView.removeGestureRecognizer(tapGesture!)
+        // Так-же обнуляем обработчик
+        tapGesture = nil
+    }
+    
+    @objc func hideKeyboard() {
+        self.groupTableView?.endEditing(true)
     }
     
 }
@@ -102,12 +141,17 @@ extension UserGroupsViewController: UITableViewDelegate, UITableViewDataSource{
         else {
             return UITableViewCell()
         }
+        groups = groups.sorted(by: { $0.nameGroup < $1.nameGroup})
+        filteredGroups = groups
         // Сортировка списка фильтрованных через SearchBar групп по алфавиту
-        filteredGroups = filteredGroups.sorted(by: { $0.nameGroup < $1.nameGroup})
         // Записываем в group значение из массива filteredGroups (SearchBar) для определенной строки
         let group = filteredGroups[indexPath.row]
         // Передаем значение строки в ячейку
-        cell.configure(group: group)
+        cell.configure(group: group, indexPathFromTable: indexPath)
+        cell.avatarTapped = { [weak self] in
+            self?.tapedInAvatar = true
+            self?.performSegue(withIdentifier: "moveToProfileGroup", sender: indexPath)
+        }
         // Возвращаем ячейку в таблицу для демонстрации
         return cell
     }

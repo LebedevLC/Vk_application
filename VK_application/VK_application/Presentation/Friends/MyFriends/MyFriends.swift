@@ -43,7 +43,7 @@ class MyFriends: UIViewController {
         destinationController.photoes = friend.photo
         // передаем название
         destinationController.title = friend.name
-        // возвращаем значение идентификатора нажатия (костыля)
+        // меняем значение идентификатора нажатия (костыля)
         self.tapedInAvatar = false
     }
     
@@ -69,7 +69,7 @@ class MyFriends: UIViewController {
     
 }
 
-// MARK: - Extension MyFriends
+// MARK: - Extension MyFriends Delegate, DataSourse
 extension MyFriends: UITableViewDelegate, UITableViewDataSource{
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -100,6 +100,7 @@ extension MyFriends: UITableViewDelegate, UITableViewDataSource{
         if editingStyle == .delete {
             friends.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .bottom)
+//            tableView.reloadData()
         }
     }
     

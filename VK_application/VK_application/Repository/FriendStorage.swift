@@ -18,8 +18,13 @@ class FriendStorage {
         friend = [
             FriendModel(name: "Uchiha Sasuke", avatarName: "Sasuke0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Sasuke1", likeCount: 1, isLike: false),
@@ -37,8 +42,13 @@ class FriendStorage {
             
             FriendModel(name: "See Hinata", avatarName: "Hinata0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Voleyball", avatarGroup: "group_volleyball"),
+                            GroupModel(
+                                nameGroup: "Voleyball",
+                                avatarGroup: "group_volleyball",
+                                logoImage: "Logo5",
+                                shortDescription: "Фан-группа",
+                                fullDescription: "4 сезон аниме закончился. Про 5 сезон НЕТ никакой информации. Манга закончилась, последняя глава — 402.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "group_volleyball", likeCount: 0, isLike: false),
@@ -55,9 +65,13 @@ class FriendStorage {
             
             FriendModel(name: "Yagami Ligth", avatarName: "Light0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
-                        ],
+                            GroupModel(
+                                nameGroup: "Tru detectiv",
+                                avatarGroup: "group_trueDetectiv",
+                                logoImage: "Logo3",
+                                shortDescription: "Фан-группа",
+                                fullDescription: "Настоящий детектив» (англ. True Detective) — американский телесериал в жанре криминальной драмы, транслируемый с 12 января 2014 года на кабельном канале HBO. Создатель и автор сценария — Ник Пиццолатто. Сериал выпускается в формате антологии — в каждом сезоне свой сюжет и действующие лица. Внимание❗☢ В постах сообщества встречается ненормативная лексика❗",
+                                subscribersCount: 100)],
                         photo: [
                             PhotoModel(name: "", fileName: "Light1", likeCount: 1, isLike: false),
                             PhotoModel(name: "", fileName: "Light2", likeCount: 2, isLike: false),
@@ -69,8 +83,13 @@ class FriendStorage {
             
             FriendModel(name: "Haruno Sakura", avatarName: "Sakura0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "Beauty", fileName: "Sakura2", likeCount: 10, isLike: false),
@@ -86,8 +105,13 @@ class FriendStorage {
             FriendModel(name: "Okabe Rintaro",
                         avatarName: "Okabe0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
+                            GroupModel(
+                                nameGroup: "Anime",
+                                avatarGroup: "group_anime",
+                                logoImage: "Logo0",
+                                shortDescription: "Anime Channel",
+                                fullDescription: "Здесь вы найдете самые актуальные новости из мира японской анимации, анонсы грядущих новинок и хорошее настроение. Присоединяйтесь! Никакие конкурсы с оплатой доставки мы не проводим. О любых случаях мошенничества пишите в личные сообщения группы. Спасибо.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "Мы забираем машину времени", fileName: "Okabe3", likeCount: 14, isLike: false),
@@ -107,8 +131,13 @@ class FriendStorage {
         allFriends = [
             FriendModel(name: "Uzumaki Naruto", avatarName: "Naruto0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Naruto1", likeCount: 1, isLike: false),
@@ -125,8 +154,13 @@ class FriendStorage {
             
             FriendModel(name: "Sudzumia Haruhi", avatarName: "Haruhi0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Shcool days", avatarGroup: "group_shcoolDays")
+                            GroupModel(
+                                nameGroup: "Anime",
+                                avatarGroup: "group_anime",
+                                logoImage: "Logo0",
+                                shortDescription: "Anime Channel",
+                                fullDescription: "Здесь вы найдете самые актуальные новости из мира японской анимации, анонсы грядущих новинок и хорошее настроение. Присоединяйтесь! Никакие конкурсы с оплатой доставки мы не проводим. О любых случаях мошенничества пишите в личные сообщения группы. Спасибо.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Haruhi1", likeCount: 1, isLike: false),
@@ -139,8 +173,13 @@ class FriendStorage {
             
             FriendModel(name: "See Hinata", avatarName: "Hinata0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Voleyball", avatarGroup: "group_volleyball"),
+                            GroupModel(
+                                nameGroup: "Voleyball",
+                                avatarGroup: "group_volleyball",
+                                logoImage: "Logo5",
+                                shortDescription: "Фан-группа",
+                                fullDescription: "4 сезон аниме закончился. Про 5 сезон НЕТ никакой информации. Манга закончилась, последняя глава — 402.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "group_volleyball", likeCount: 0, isLike: false),
@@ -157,8 +196,13 @@ class FriendStorage {
             
             FriendModel(name: "RosKomNadzor", avatarName: "r_tyan0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "RKN", avatarGroup: "group_RKN")
+                            GroupModel(
+                                nameGroup: "RKN",
+                                avatarGroup: "group_RKN",
+                                logoImage: "Logo7",
+                                shortDescription: "РКН во Вконтакте",
+                                fullDescription: "Официальный паблик Федеральной службы по надзору в сфере связи, информационных технологий и массовых коммуникаций.",
+                                subscribersCount: 2),
                         ],
                         photo: [
                             PhotoModel(name: "I am", fileName: "r_tyan0", likeCount: 4, isLike: false),
@@ -168,8 +212,13 @@ class FriendStorage {
             
             FriendModel(name: "Haruno Sakura", avatarName: "Sakura0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "Beauty", fileName: "Sakura2", likeCount: 10, isLike: false),
@@ -184,8 +233,13 @@ class FriendStorage {
             
             FriendModel(name: "Uchiha Sasuke", avatarName: "Sasuke0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Sasuke1", likeCount: 1, isLike: false),
@@ -203,8 +257,13 @@ class FriendStorage {
             
             FriendModel(name: "Uchiha Itachi", avatarName: "Itachi0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Konoha", avatarGroup: "group_konoha")
+                            GroupModel(
+                                nameGroup: "Konoha",
+                                avatarGroup: "group_konoha",
+                                logoImage: "Logo1",
+                                shortDescription: "Больше, чем просто аниме",
+                                fullDescription: "Наруто, боруто и музыка.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Itachi1", likeCount: 1, isLike: false),
@@ -217,8 +276,13 @@ class FriendStorage {
             
             FriendModel(name: "Yagami Ligth", avatarName: "Light0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
+                            GroupModel(
+                                nameGroup: "Tru detectiv",
+                                avatarGroup: "group_trueDetectiv",
+                                logoImage: "Logo3",
+                                shortDescription: "Фан-группа",
+                                fullDescription: "Настоящий детектив» (англ. True Detective) — американский телесериал в жанре криминальной драмы, транслируемый с 12 января 2014 года на кабельном канале HBO. Создатель и автор сценария — Ник Пиццолатто. Сериал выпускается в формате антологии — в каждом сезоне свой сюжет и действующие лица. Внимание❗☢ В постах сообщества встречается ненормативная лексика❗",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "", fileName: "Light1", likeCount: 1, isLike: false),
@@ -232,8 +296,13 @@ class FriendStorage {
             FriendModel(name: "Okabe Rintaro (From Future)",
                         avatarName: "Okabe0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Tru detectiv", avatarGroup: "group_trueDetectiv")
+                            GroupModel(
+                                nameGroup: "Anime",
+                                avatarGroup: "group_anime",
+                                logoImage: "Logo0",
+                                shortDescription: "Anime Channel",
+                                fullDescription: "Здесь вы найдете самые актуальные новости из мира японской анимации, анонсы грядущих новинок и хорошее настроение. Присоединяйтесь! Никакие конкурсы с оплатой доставки мы не проводим. О любых случаях мошенничества пишите в личные сообщения группы. Спасибо.",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "Мы забираем машину времени", fileName: "Okabe3", likeCount: 14, isLike: false),
@@ -246,10 +315,31 @@ class FriendStorage {
                         ]
             ),
             
+            FriendModel(name: "Shikimori",
+                        avatarName: "Shiki0",
+                        groupsUser: [
+                            GroupModel(
+                                nameGroup: "Anime",
+                                avatarGroup: "group_anime",
+                                logoImage: "Logo0",
+                                shortDescription: "Anime Channel",
+                                fullDescription: "Здесь вы найдете самые актуальные новости из мира японской анимации, анонсы грядущих новинок и хорошее настроение. Присоединяйтесь! Никакие конкурсы с оплатой доставки мы не проводим. О любых случаях мошенничества пишите в личные сообщения группы. Спасибо.",
+                                subscribersCount: 100),
+                        ],
+                        photo: [
+                            PhotoModel(name: "Энциклопедия аниме и манги", fileName: "Shiki1", likeCount: 22, isLike: false),
+                        ]
+            ),
+            
             FriendModel(name: "Tokuchi Toa", avatarName: "Tokuchi0",
                         groupsUser: [
-                            GroupModel(nameGroup: "Anime", avatarGroup: "group_anime"),
-                            GroupModel(nameGroup: "Baseball", avatarGroup: "group_baseBall"),
+                            GroupModel(
+                                nameGroup: "Baseball",
+                                avatarGroup: "group_baseBall",
+                                logoImage: "Logo2",
+                                shortDescription: "Since 2012 #жде́мкаждого",
+                                fullDescription: "Добро пожаловать в CALVARY! Не беда, если вы никогда не играли в бейсбол! Инструкции и инвентарь вы получите на месте! Всё покажем и расскажем! Ждём каждого! Наша цель - дружба и бейсбол!",
+                                subscribersCount: 100),
                         ],
                         photo: [
                             PhotoModel(name: "Baseball master", fileName: "Tokuchi1", likeCount: 9, isLike: false),

@@ -28,12 +28,24 @@ final class NewsViewController: UIViewController {
         newsTableView.register(UINib(nibName: NewsCellPhoto.reusedIdentifier, bundle: nil),
                                forCellReuseIdentifier: NewsCellPhoto.reusedIdentifier)
         
-        newsTableView.register(NewsFooter.self,
-                               forHeaderFooterViewReuseIdentifier: NewsFooter.reusedIdentifier)
-        newsTableView.sectionFooterHeight = 60
+        newsTableView.register(UINib(nibName: NewsCellFooter.reusedIdentifier, bundle: nil),
+                               forCellReuseIdentifier: NewsCellFooter.reusedIdentifier)
         
         let storage = NewsStorage()
         news = storage.news
+    }
+    
+    // переопределяем сегу для переходов
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard
+            // Проверям сегу
+            segue.identifier == "showBigImageNews",
+            // Кастим
+            let destinationController = segue.destination as? BigImageNewsVC,
+            let indexPath = sender as? IndexPath
+        else { return }
+        // Отправляем
+        destinationController.imageName = news[indexPath.section].newsImageName
     }
     
 }
@@ -47,13 +59,14 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        3
+        4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
+        
+// первая ячейка (хедер)
         case 0:
-// первая ячейка
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellHeader2.reusedIdentifier,
                                                          for: indexPath) as? NewsCellHeader2
@@ -64,8 +77,9 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
             let friend = newsData.user[0]
             cell.configure(friend: friend, newsData: newsData)
             return cell
+            
+// вторая ячейка (текст)
         case 1:
-// вторая ячейка
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellText.reusedIdentifier,
                                                          for: indexPath) as? NewsCellText
@@ -74,9 +88,15 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let news = news[indexPath.section]
             cell.configure(news: news)
+            // реализация разворачивания и сворачивания текста
+            cell.controlTapped = { [weak self] in
+                // обновляем данные
+                self?.newsTableView.reloadData()
+            }
             return cell
-        default:
-// третья ячейка
+            
+// третья ячейка (медиа)
+        case 2:
             guard
                 let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellPhoto.reusedIdentifier,
                                                          for: indexPath) as? NewsCellPhoto
@@ -85,38 +105,38 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
             }
             let news = news[indexPath.section]
             cell.configure(news: news)
+            // обработка замыкания в ячейке
+            cell.controlTapped = { [weak self] in
+                self?.performSegue(withIdentifier: "showBigImageNews", sender: indexPath)}
+            return cell
+            
+// четвертая яейка (футер)
+        default:
+            guard
+                let cell = tableView.dequeueReusableCell(withIdentifier: NewsCellFooter.reusedIdentifier,
+                                                         for: indexPath) as? NewsCellFooter
+            else {
+                return UITableViewCell()
+            }
+            cell.configure(newsData: news[indexPath.section].newsDataModel[0])
+            cell.likeTapped = { [weak self] in
+                self?.news[indexPath.section].newsDataModel[0].newsIsLike.toggle()
+                self?.newsTableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
+            cell.repostTapped = { [weak self] in
+                self?.news[indexPath.section].newsDataModel[0].newsIsRepost.toggle()
+                self?.newsTableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
+            cell.commentTapped = { [weak self] in
+                self?.news[indexPath.section].newsDataModel[0].newsIsComment.toggle()
+                self?.newsTableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            }
             return cell
         }
-    }
-    
-    // добвляем футер с контролами
-    func  tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard
-            let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: NewsFooter.reusedIdentifier) as? NewsFooter
-        else {
-            return nil
-        }
-        footer.configure(newsData: news[section].newsDataModel[0])
-        footer.likeTapped = { [weak self] in
-            self?.news[section].newsDataModel[0].newsIsLike.toggle()
-            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
-        }
-        footer.repostTapped = { [weak self] in
-            self?.news[section].newsDataModel[0].newsIsRepost.toggle()
-            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
-        }
-        footer.commentTapped = { [weak self] in
-            self?.news[section].newsDataModel[0].newsIsComment.toggle()
-            self?.newsTableView.reloadSections(IndexSet(integer: section), with: .none)
-        }
-        
-        // добавил белую рамку, чтобы был больше отступ (визуально, конечно) между футером и контентом
-        footer.layer.borderWidth = 10
-        footer.layer.borderColor = UIColor.white.cgColor
-        footer.layer.backgroundColor = UIColor.white.cgColor
-        return footer
     }
     
 }
 
 // на две версии NewsFeed потрачено 8-9 часов
+// + 0.5 часа на доработку 2-й версии
+// + 4/6 часа на улучшение ячейки текста

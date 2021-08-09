@@ -13,10 +13,13 @@ final class NewsCellText: UITableViewCell {
     
     static let reusedIdentifier = "NewsCellText"
     
+    private var isMore: Bool = false
+    
+    var controlTapped: (() -> Void)?
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.configureStatic()
-//        labelText.frame = bounds
+        setSingleTap()
     }
     
     override func prepareForReuse() {
@@ -26,11 +29,24 @@ final class NewsCellText: UITableViewCell {
     
     func configure(news: NewsModel) {
         labelText.text = news.text
-        
     }
-    
-    private func configureStatic() {
-        //        newsImageView.layer.borderWidth = 2
-        //        newsImageView.layer.borderColor = UIColor.black.cgColor
+
+    // Добавляем обрабоку нажатия на текст (в сториборде разрешил взаимодействие с пользователем)
+    func setSingleTap() {
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleSingleTap))
+        singleTap.numberOfTapsRequired = 1
+        self.labelText.addGestureRecognizer(singleTap)
+    }
+
+    // Разворачиваем или сворачиваем длинный текст
+    @IBAction func handleSingleTap(sender: UITapGestureRecognizer) {
+        if isMore {
+            labelText.numberOfLines = 8
+        }
+        else {
+            labelText.numberOfLines = 0
+        }
+        isMore.toggle()
+        controlTapped?()
     }
 }

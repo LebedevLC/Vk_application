@@ -38,11 +38,21 @@ class BigPhotoView: UIView {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         return nameLabel
     }()
+    private var likeControl: UIImageView = {
+        let likeControl = UIImageView()
+        likeControl.image = UIImage(systemName: "heart.fill")
+        likeControl.tintColor = .white
+        likeControl.backgroundColor = UIColor.clear
+        likeControl.alpha = 0
+        likeControl.translatesAutoresizingMaskIntoConstraints = false
+       return likeControl
+    }()
     private var panGesture: UIPanGestureRecognizer?
     private var beginCenterXVisibleView: CGFloat = 0
     private var beginCenterXRightView: CGFloat = 0
     private var beginCenterXLeftView: CGFloat = 0
     private let scale = CGAffineTransform(scaleX: 0.85, y: 0.85)
+
     var namePhoto: [String] = []
     var photoes: [String] = []
     var visibleIndex: Int = 0
@@ -51,6 +61,7 @@ class BigPhotoView: UIView {
         super.layoutSubviews()
         setViews()
         setGesture()
+        setDoubleTap()
         setPhotos()
         beginCenterXVisibleView = visibleView.center.x
         beginCenterXRightView = rightView.center.x
@@ -62,6 +73,9 @@ class BigPhotoView: UIView {
         addSubview(rightView)
         addSubview(visibleView)
         addSubview(nameLabel)
+        addSubview(likeControl)
+        
+        visibleView.frame = self.bounds
         
         NSLayoutConstraint.activate([
             visibleView.widthAnchor.constraint(equalTo: self.widthAnchor),
@@ -79,10 +93,15 @@ class BigPhotoView: UIView {
             rightView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             rightView.leadingAnchor.constraint(equalTo: visibleView.trailingAnchor, constant: 15),
             
-            nameLabel.topAnchor.constraint(equalTo: visibleView.topAnchor, constant: -40),
+            nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 50),
             nameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
             nameLabel.heightAnchor.constraint(equalToConstant: 40),
-            nameLabel.widthAnchor.constraint(equalToConstant: 370)
+            nameLabel.widthAnchor.constraint(equalToConstant: 370),
+            
+            likeControl.centerYAnchor.constraint(equalTo: visibleView.centerYAnchor),
+            likeControl.centerXAnchor.constraint(equalTo: visibleView.centerXAnchor),
+            likeControl.heightAnchor.constraint(equalToConstant: 200),
+            likeControl.widthAnchor.constraint(equalToConstant: 230),
         ])
     }
     
@@ -120,9 +139,7 @@ class BigPhotoView: UIView {
             rightView.isHidden = false
             leftView.isHidden = false
             
-            visibleView.transform = scale
-            rightView.transform = scale
-            leftView.transform = scale
+            firstTransformAnimate()
         }
         recognizer.setTranslation(.zero, in: self.visibleView)
         if recognizer.state == .ended {
@@ -136,6 +153,16 @@ class BigPhotoView: UIView {
             }
         }
     }
+    
+    func setDoubleTap() {
+    let doubleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleDoubleTap))
+        doubleTap.numberOfTapsRequired = 2
+    self.visibleView.addGestureRecognizer(doubleTap)
+    }
+    
+    @objc func handleDoubleTap() {
+        likeAnimation()
+     }
     
     private func nextIndex() -> Int {
         let lastIndex = photoes.count - 1
@@ -155,6 +182,50 @@ class BigPhotoView: UIView {
         }
     }
     
+//MARK:- Animation
+    
+    enum DirectionAnimation {
+        case left
+        case right
+        case revert
+    }
+    
+    // Анимация перехода изображения
+    private func startAnimate(_ direction: DirectionAnimation) {
+        visibleView.isUserInteractionEnabled = false
+        self.leftView.isHidden = false
+        self.rightView.isHidden = false
+        UIView.animate(withDuration: 0.3) {
+            switch direction {
+            case .revert:
+                self.visibleView.center.x = self.beginCenterXVisibleView
+                self.leftView.center.x = self.beginCenterXLeftView
+                self.rightView.center.x = self.beginCenterXRightView
+//                self.transformAnimate()
+            case .left:
+                self.visibleView.center.x = self.beginCenterXLeftView
+                self.rightView.center.x = self.beginCenterXVisibleView
+                self.visibleIndex = self.nextIndex()
+//                self.transformAnimate()
+            case .right:
+                self.visibleView.center.x = self.beginCenterXRightView
+                self.leftView.center.x = self.beginCenterXVisibleView
+                self.visibleIndex = self.earlyIndex()
+//                self.transformAnimate()
+            }
+        } completion: { _ in
+            self.transformAnimate()
+//            self.visibleView.isUserInteractionEnabled = true
+            self.visibleView.center.x = self.beginCenterXVisibleView
+            self.leftView.center.x = self.beginCenterXLeftView
+            self.rightView.center.x = self.beginCenterXRightView
+            self.leftView.isHidden = true
+            self.rightView.isHidden = true
+            self.setPhotos()
+        }
+    }
+    
+   // Анимация плавного завершения перехода (наплывания) и затухания названия
    private func transformAnimate() {
         UIView.animate(
             withDuration: 0.5,
@@ -170,11 +241,26 @@ class BigPhotoView: UIView {
                     self.nameLabel.alpha = 0
                 }
             }, completion: { _ in
+                self.visibleView.isUserInteractionEnabled = true
                 self.nameLabel.alpha = 1
                 self.labelAlphaAnimate()
             })
     }
     
+    // Анимация отдаления фото при прокручивании
+    private func firstTransformAnimate() {
+         UIView.animate(
+            withDuration: 0.7,
+             delay: 0,
+             options: [.curveEaseOut,],
+             animations: { [unowned self] in
+                visibleView.transform = scale
+                rightView.transform = scale
+                leftView.transform = scale
+             }, completion: nil )
+     }
+    
+    // Анимация исчезновения названия
     private func labelAlphaAnimate() {
         UIView.animate(
             withDuration: 1,
@@ -182,42 +268,30 @@ class BigPhotoView: UIView {
             options: [.curveEaseOut,],
             animations: { [unowned self] in
                 self.nameLabel.alpha = 0
+                
             })
     }
     
-    private func startAnimate(_ direction: DirectionAnimation) {
-        visibleView.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.3) {
-            switch direction {
-            case .revert:
-                self.visibleView.center.x = self.beginCenterXVisibleView
-                self.leftView.center.x = self.beginCenterXLeftView
-                self.rightView.center.x = self.beginCenterXRightView
-                self.transformAnimate()
-            case .left:
-                self.visibleView.center.x = self.beginCenterXLeftView
-                self.rightView.center.x = self.beginCenterXVisibleView
-                self.visibleIndex = self.nextIndex()
-                self.transformAnimate()
-            case .right:
-                self.visibleView.center.x = self.beginCenterXRightView
-                self.leftView.center.x = self.beginCenterXVisibleView
-                self.visibleIndex = self.earlyIndex()
-                self.transformAnimate()
-            }
-        } completion: { _ in
-            self.visibleView.isUserInteractionEnabled = true
-            self.visibleView.center.x = self.beginCenterXVisibleView
-            self.leftView.center.x = self.beginCenterXLeftView
-            self.rightView.center.x = self.beginCenterXRightView
-            self.setPhotos()
-        }
-    }
-    
-    enum DirectionAnimation {
-        case left
-        case right
-        case revert
+    // Анимация лайка
+    private func likeAnimation() {
+        UIView.animateKeyframes(
+            withDuration: 1,
+            delay: 0,
+            options: [],
+            animations: {
+                UIView.addKeyframe(withRelativeStartTime: 0,
+                                   relativeDuration: 1/10,
+                                   animations: {
+                                    self.likeControl.alpha = 0.8
+                                   })
+                UIView.addKeyframe(withRelativeStartTime: 1/2,
+                                   relativeDuration: 1/2,
+                                   animations: {
+                                    self.likeControl.alpha = 0
+                                   })
+            },
+            completion: nil
+        )
     }
     
 }

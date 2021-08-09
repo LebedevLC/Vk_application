@@ -17,7 +17,6 @@ final class PhotoFriendViewController: UIViewController {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-//        collectionView.allowsMultipleSelection = false
     }
     
     // Передача на следующий контроллер всех изображений объекта и IndexPath выделенного
